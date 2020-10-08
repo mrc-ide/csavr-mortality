@@ -44,7 +44,7 @@ sankey_surver <- function(input, output, session) {
   #   as.data.frame() %>%
   #   type.convert()
   
-  links <<- read.csv("example_data.csv")
+  
   
   nodes_sankey <- reactive(
     links %>%
@@ -135,6 +135,13 @@ sankey_surver <- function(input, output, session) {
   
   return(sn)
   
+  })
+  
+  observe({
+    req(input$width)
+    
+    sn_width <- input$width
+    
   })
 
 }

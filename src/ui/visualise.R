@@ -9,10 +9,10 @@ visualise <- function() {
           # column(2, uiOutput("sex_option"))
           column(3, 
                  selectInput("country", "Country:",
-                             list(`Latin America` = list("MWI", "ZMB"),
-                                  `EECA` = list("ZWE", "MOZ"),
-                                  `MENA` = list("ETH", "RWA", "TZA")),
-                             selected = "MWI"
+                             list(`Latin America` = list("ARG", "MEX"),
+                                  `EECA` = list("UKR", "KAZ"),
+                                  `MENA` = list("DZA")),
+                             selected = "ARG"
                  )
                  # selectInput("country1", "Country:",
                  #                choices=list(

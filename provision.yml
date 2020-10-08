@@ -1,0 +1,8 @@
+packages:
+ - shiny
+ - tidyverse
+ - DT
+ - shinyjs
+ - htmlwidgets
+ - networkD3
+ - countrycode
