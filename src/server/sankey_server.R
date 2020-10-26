@@ -2,20 +2,16 @@ sankey_surver <- function(input, output, session) {
 
   # browser()
   
-  dat <- reactive(
-    full_dat %>%
+  dat <- reactive({
+    
+    dat <- full_dat %>%
       filter(iso3 == input$country,
              age_group == input$age,
              sex == input$sex,
              period == as.integer(input$period)
       )
-  )
-
-  
-  
-  
-  sum_intermediate <- reactive(
-    dat() %>%
+    
+    sum_intermediate <- dat %>%
       filter(flow == "Garbage") %>%
       group_by(iso3, area_name, period, age_group, sex_id, target) %>%
       summarise(deaths = sum(deaths)) %>%
@@ -24,19 +20,36 @@ sankey_surver <- function(input, output, session) {
              state = 2,
              source_state = 2,
              target_state = 3)
-  )
-  
-  dat_extend <- reactive(
-    dat() %>%
-      bind_rows(sum_intermediate())
-  )
+    
+    dat <- dat %>%
+      bind_rows(sum_intermediate)
+    
+    
+  })
+
+
+  # sum_intermediate <- reactive(
+  #   dat() %>%
+  #     filter(flow == "Garbage") %>%
+  #     group_by(iso3, area_name, period, age_group, sex_id, target) %>%
+  #     summarise(deaths = sum(deaths)) %>%
+  #     mutate(source = target,
+  #            flow = "Intermediate",
+  #            state = 2,
+  #            source_state = 2,
+  #            target_state = 3)
+  # )
+  # 
+  # dat <- reactive(
+  #   
+  # )
   
   node_df <- reactive(
-    dat_extend() %>%
+    dat() %>%
       select(source, source_state) %>%
       rename(node = source, val = source_state) %>%
       bind_rows(
-        dat_extend() %>%
+        dat() %>%
           select(target, target_state) %>%
           rename(node = target, val = target_state)
       ) %>%
@@ -51,7 +64,7 @@ sankey_surver <- function(input, output, session) {
   )
   
   links_dat <- reactive(
-    dat_extend() %>%
+    dat() %>%
       select(source, target, deaths, source_state, target_state) %>%
       left_join(
         node_df() %>%
