@@ -5,7 +5,7 @@ sankey_surver <- function(input, output, session) {
   dat <- reactive({
     
     dat <- full_dat %>%
-      filter(iso3 == input$country,
+      filter(area_name == input$country,
              age_group == input$age,
              sex == input$sex,
              period == as.integer(input$period)
@@ -19,7 +19,8 @@ sankey_surver <- function(input, output, session) {
              flow = "Intermediate",
              state = 2,
              source_state = 2,
-             target_state = 3)
+             target_state = 3) %>%
+      ungroup()
     
     dat <- dat %>%
       bind_rows(sum_intermediate)
@@ -81,16 +82,16 @@ sankey_surver <- function(input, output, session) {
   output$links_sankey_df <- renderDT({
     links_dat() %>%
       mutate(Country = input$country,
-             "Age group" = input$age_group,
+             "Age group" = input$age,
              Year = input$period,
              Sex = input$sex,
              Flow = ifelse(source_state == 1, "Garbage", "Misclassification")) %>%
+      filter(!source %in% c("hiv", "hiv_other")) %>%
       rename("Origin COD" = source,
              "Reallocated COD" = target,
              Deaths = deaths
              ) %>%
-      select(-c(source_state, target_state, source_node_id, target_node_id)) %>%
-      mutate(Country = countrycode(Country, "iso3c", "country.name"))
+      select(Country, Year, "Age group", Sex, Flow, "Origin COD", "Reallocated COD", Deaths)
   })
   
   # output$country_result <- renderText({input$country})
@@ -112,27 +113,29 @@ sankey_surver <- function(input, output, session) {
   # )
   
   output$sankey <- renderSankeyNetwork({
+    
+    req(input$country, input$age, input$sex, input$period)
   
-  sn <- sankeyNetwork(Links = links_dat(), Nodes = node_df(), Source = "source_node_id",
-                      Target = "target_node_id", Value = "deaths", NodeID = "node",
-                      units = "deaths", fontSize = 12, nodeWidth = 30, iterations = 0)
-  
-  # sn <- onRender(
-  #   sn,
-  #   '
-  #     function(el,x){
-  #       // select all our node text
-  #       d3.select(el)
-  #       .selectAll(".node text")
-  #       .filter(function(d) { return d.name.startsWith("Disease"); })
-  #       .attr("x", x.options.nodeWidth - 40)
-  #       .attr("text-anchor", "end");
-  #     }
-  #   '
-  # )
-  
-  return(sn)
-  
+      sn <- sankeyNetwork(Links = links_dat(), Nodes = node_df(), Source = "source_node_id",
+                          Target = "target_node_id", Value = "deaths", NodeID = "node",
+                          units = "deaths", fontSize = 12, nodeWidth = 30, iterations = 0)
+      
+      # sn <- onRender(
+      #   sn,
+      #   '
+      #     function(el,x){
+      #       // select all our node text
+      #       d3.select(el)
+      #       .selectAll(".node text")
+      #       .filter(function(d) { return d.name.startsWith("Disease"); })
+      #       .attr("x", x.options.nodeWidth - 40)
+      #       .attr("text-anchor", "end");
+      #     }
+      #   '
+      # )
+      
+      return(sn)
+      
   })
   
   # observe({
