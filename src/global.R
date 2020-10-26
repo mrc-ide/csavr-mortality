@@ -1,46 +1,60 @@
+# full_dat <- readRDS("src/clean_dat.rds")
+full_dat <- readRDS("clean_dat.rds")
+
+
+# group <- read.csv("src/ihme_mortality_group.csv")
+# group <- group %>%
+#   filter(area_name != "U.S. Virgin Isl") %>%
+#   mutate(iso3 = countrycode(area_name, "country.name", "iso3c"))
 # 
-# cats <- list()
-# cats$iso3 <- c("MWI", "ZMB", "ZWE", "MOZ", "ETH")
-# cats$age_groups <- get_age_groups() %>% filter(age_group_id %in% 4:17) %>% .$age_group
-# cats$sex <- c("female", "male", "both")
-# cats$period <- 1980:2018
-# 
-# links <- crossing(
-#   "iso3" = cats$iso3,
-#   "period" = cats$period,
-#   "sex" = cats$sex,
-#   "age_group" = cats$age_groups,
-#   "source_label" = paste0("Disease", 0:10),
-#   "type" = "garbage",
-#   "target_label" = "HIV intermediate")
-# 
-# links <- links %>%
-#   mutate("value"=sample(1:100, nrow(.), replace=TRUE))
-# 
-# links <- links %>%
-#   bind_rows(
-#     links %>%
-#       group_by(iso3, age_group, period, sex, target_label) %>%
-#       summarise(value = sum(value)) %>%
-#       ungroup %>%
-#       rename(source_label = target_label) %>%
-#       bind_cols(target_label = "HIV final") %>%
-#       mutate(type = "intermediate")
+# garbage <- read.csv("~/Dropbox/oli backup/clean_hiv_redistribution_data.csv") %>%
+#   filter(country == location_name,
+#          age_group_id %in% 8:18) %>%
+#   mutate(age_group = str_replace(age_group_name, " to ", "-"),
+#          iso3 = countrycode(country, "country.name", "iso3c"),
+#          area_name = countrycode(iso3, "iso3c", "country.name"),
+#          flow = "Garbage",
+#          state = 1,
+#          source_state = 1,
+#          target_state = 2) %>%
+#   select(-c(country, location_name, age_group_id, age_group_name)) %>%
+#   rename(period = year_id,
+#          target = acause,
+#          source = package_description,
+#          source_id = cause_id
 #   )
 # 
-# links <- links %>%
-#   bind_rows(
-#     crossing(
-#       "iso3" = cats$iso3,
-#       "period" = cats$period,
-#       "sex" = cats$sex,
-#       "age_group" = cats$age_group,
-#       "source_label" = paste0("Disease", 12:22),
-#       "type" = "misclassify",
-#       "target_label" = "HIV final") %>%
-#       mutate("value"=sample(1:100, nrow(.), replace=TRUE))
+# misclassification <- read.csv("~/Downloads/clean_hiv_correction_results.csv")
+# location <- read.csv("~/Downloads/ids_35_Model Results_Round 7.csv") %>%
+#   select(location_id, local_id)
+# 
+# misclassification <- misclassification %>%
+#   filter(age_group_id %in% 8:18) %>%
+#   mutate(age_group = str_replace(age_group_name, " to ", "-")) %>%
+#   select(-c(age_group_id, age_group_name)) %>%
+#   left_join(location) %>%
+#   filter(str_length(local_id) == 3, !grepl("[0-9]", .$local_id)) %>%
+#   mutate(iso3 = countrycode(location_name, "country.name", "iso3c"),
+#          area_name = countrycode(iso3, "iso3c", "country.name"),
+#          flow = "Misclassification",
+#          state = 2,
+#          source_state = 2,
+#          target_state = 3) %>%
+#   rename(period = year_id,
+#          target = target_acause,
+#          source = acause,
+#          source_id = cause_id,
+#          target_id = target_cause_id,
+#          deaths = deaths_moved_to_target
 #   ) %>%
-#   as.data.frame() %>%
-#   type.convert()
+#   select(-c(location_name, local_id, location_id))
+# 
+# full_dat <- garbage %>%
+#   bind_rows(misclassification) %>%
+#   select(iso3, area_name, period, age_group, sex_id, flow, state, source_state, source, source_id, target, target_state, target_id, deaths) %>%
+#   left_join(group %>% select(iso3, group)) %>%
+#   filter(!is.na(group),
+#          target != "hiv_tb_other"
+#   )
 
-links <<- read.csv("example_data.csv")
+# saveRDS(full_dat, "clean_dat.rds")

@@ -1,97 +1,82 @@
 sankey_surver <- function(input, output, session) {
+
+  # browser()
   
-  # cats <- list()
-  # cats$iso3 <- c("MWI", "ZMB", "ZWE", "MOZ", "ETH")
-  # cats$age_groups <- get_age_groups() %>% filter(age_group_id %in% 4:17) %>% .$age_group
-  # cats$sex <- c("female", "male", "both")
-  # cats$period <- 1980:2018
-  # 
-  # links <<- crossing(
-  #           "iso3" = cats$iso3,
-  #           "period" = cats$period,
-  #           "sex" = cats$sex,
-  #           "age_group" = cats$age_groups,
-  #           "source_label" = paste0("Disease", 0:10),
-  #           "type" = "garbage",
-  #           "target_label" = "HIV intermediate")
-  # 
-  # links <- links %>%
-  #   mutate("value"=sample(1:100, nrow(.), replace=TRUE))
-  # 
-  # links <- links %>%
-  #   bind_rows(
-  #     links %>%
-  #       group_by(iso3, age_group, period, sex, target_label) %>%
-  #       summarise(value = sum(value)) %>%
-  #       ungroup %>%
-  #       rename(source_label = target_label) %>%
-  #       bind_cols(target_label = "HIV final") %>%
-  #       mutate(type = "intermediate")
-  #   )
-  # 
-  # links <- links %>%
-  #   bind_rows(
-  #     crossing(
-  #       "iso3" = cats$iso3,
-  #       "period" = cats$period,
-  #       "sex" = cats$sex,
-  #       "age_group" = cats$age_group,
-  #       "source_label" = paste0("Disease", 12:22),
-  #       "type" = "misclassify",
-  #       "target_label" = "HIV final") %>%
-  #       mutate("value"=sample(1:100, nrow(.), replace=TRUE))
-  #   ) %>%
-  #   as.data.frame() %>%
-  #   type.convert()
-  
-  
-  
-  nodes_sankey <- reactive(
-    links %>%
+  dat <- reactive(
+    full_dat %>%
       filter(iso3 == input$country,
-             age_group %in% input$age,
+             age_group == input$age,
              sex == input$sex,
              period == as.integer(input$period)
-      ) %>%
-      # filter(iso3 == "MWI",
-      #        age_group %in% "20-24",
-      #        sex == "both",
-      #        period == 2016
-      # ) %>%
-      select(source_label, type) %>%
-      bind_rows(data.frame(source_label = "HIV final", type="final")) %>%
-      rename(name = source_label) %>%
-      mutate(source = row_number()-1)
+      )
+  )
+
+  
+  
+  
+  sum_intermediate <- reactive(
+    dat() %>%
+      filter(flow == "Garbage") %>%
+      group_by(iso3, area_name, period, age_group, sex_id, target) %>%
+      summarise(deaths = sum(deaths)) %>%
+      mutate(source = target,
+             flow = "Intermediate",
+             state = 2,
+             source_state = 2,
+             target_state = 3)
   )
   
-  links_sankey <- reactive(
-    links %>%
-      filter(iso3 == input$country,
-             age_group %in% input$age,
-             sex == input$sex,
-             period == as.integer(input$period)
+  dat_extend <- reactive(
+    dat() %>%
+      bind_rows(sum_intermediate())
+  )
+  
+  node_df <- reactive(
+    dat_extend() %>%
+      select(source, source_state) %>%
+      rename(node = source, val = source_state) %>%
+      bind_rows(
+        dat_extend() %>%
+          select(target, target_state) %>%
+          rename(node = target, val = target_state)
       ) %>%
-      # filter(iso3 == "MWI",
-      #        age_group %in% "20-24",
-      #        sex == "both",
-      #        period == 2016
-      # ) %>%
-      left_join(nodes_sankey() %>% select(-type), by=c("source_label" = "name")) %>%
-      left_join(nodes_sankey() %>% select(-type) %>% rename(target = source), by=c("target_label" = "name"))
-      
+      distinct() %>%
+      group_by(val) %>%
+      mutate(n = row_number()) %>%
+      arrange(val, desc(n)) %>%
+      select(-n) %>%
+      ungroup %>%
+      mutate(id = row_number()-1) %>%
+      as.data.frame()
+  )
+  
+  links_dat <- reactive(
+    dat_extend() %>%
+      select(source, target, deaths, source_state, target_state) %>%
+      left_join(
+        node_df() %>%
+          rename(source_node_id = id),
+        by=c("source" = "node", "source_state" = "val")
+      ) %>%
+      left_join(
+        node_df() %>%
+          rename(target_node_id = id),
+        by=c("target" = "node", "target_state" = "val")
+      )
   )
   
   output$links_sankey_df <- renderDT({
-    links_sankey() %>%
-      rename(Country = iso3,
-             Year = period,
-             Sex = sex,
-             "Age Group" = age_group,
-             "Origin COD" = source_label,
-             "Reallocated COD" = target_label,
-             Deaths = value
+    links_dat() %>%
+      mutate(Country = input$country,
+             "Age group" = input$age_group,
+             Year = input$period,
+             Sex = input$sex,
+             Flow = ifelse(source_state == 1, "Garbage", "Misclassification")) %>%
+      rename("Origin COD" = source,
+             "Reallocated COD" = target,
+             Deaths = deaths
              ) %>%
-      select(-c(X, type, source, target)) %>%
+      select(-c(source_state, target_state, source_node_id, target_node_id)) %>%
       mutate(Country = countrycode(Country, "iso3c", "country.name"))
   })
   
@@ -115,9 +100,9 @@ sankey_surver <- function(input, output, session) {
   
   output$sankey <- renderSankeyNetwork({
   
-  sn <- sankeyNetwork(Links = links_sankey(), Nodes = nodes_sankey(), Source = "source",
-                Target = "target", Value = "value", NodeID = "name",
-                units = "deaths", fontSize = 12, nodeWidth = 30, iterations = 0)
+  sn <- sankeyNetwork(Links = links_dat(), Nodes = node_df(), Source = "source_node_id",
+                      Target = "target_node_id", Value = "deaths", NodeID = "node",
+                      units = "deaths", fontSize = 12, nodeWidth = 30, iterations = 0)
   
   # sn <- onRender(
   #   sn,
@@ -137,11 +122,11 @@ sankey_surver <- function(input, output, session) {
   
   })
   
-  observe({
-    req(input$width)
-    
-    sn_width <- input$width
-    
-  })
+  # observe({
+  #   req(input$width)
+  #   
+  #   sn_width <- input$width
+  #   
+  # })
 
 }

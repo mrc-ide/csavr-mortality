@@ -9,10 +9,12 @@ visualise <- function() {
           # column(2, uiOutput("sex_option"))
           column(3, 
                  selectInput("country", "Country:",
-                             list(`Latin America` = list("ARG", "MEX"),
-                                  `EECA` = list("UKR", "KAZ"),
-                                  `MENA` = list("DZA")),
-                             selected = "ARG"
+                             unique(full_dat$iso3),
+                             selected = "ALB"
+                             # list(`Latin America` = list("ARG", "MEX"),
+                             #      `EECA` = list("UKR", "KAZ"),
+                             #      `MENA` = list("DZA")),
+                             # selected = "ARG"
                  )
                  # selectInput("country1", "Country:",
                  #                choices=list(
@@ -23,9 +25,9 @@ visualise <- function() {
                  #                  )
                  #                )
                  ),
-          column(2, selectInput("period", "Year:", as.character(unique(links$period))), selected="2018"),
-          column(2, selectInput("age", "Age group:", as.character(unique(links$age_group))), selected="20-24"),
-          column(2, selectInput("sex", "Sex:", as.character(unique(links$sex))), selected="both")
+          column(2, selectInput("period", "Year:", as.character(unique(full_dat$period))), selected="1987"),
+          column(2, selectInput("age", "Age group:", as.character(unique(full_dat$age_group))), selected="15-19"),
+          column(2, selectInput("sex", "Sex:", as.character(unique(full_dat$sex))), selected="female")
         ),
         # DTOutput("links_sankey_dt"),
         # DTOutput("nodes_sankey_dt"),
@@ -33,6 +35,7 @@ visualise <- function() {
         # textOutput("age_result"),
         # textOutput("period_result"),
         # textOutput("sex_result"),
+        
         tabsetPanel(
           tabPanel(title = HTML("<b style='font-size:18px'>Sankey</b>"),
                    fluidRow(
