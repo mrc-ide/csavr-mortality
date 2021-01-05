@@ -6,6 +6,8 @@ sankey_surver <- function(input, output, session) {
   observe({
 
     req(input$country, input$age, input$sex, input$period)
+    
+    shinyjs::show("titles")
 
     dat <- full_dat %>%
       filter(area_name == input$country,
@@ -69,14 +71,18 @@ sankey_surver <- function(input, output, session) {
              "Age group" = input$age,
              Year = input$period,
              Sex = input$sex,
-             Flow = ifelse(source_state == 1, "Garbage", "Misclassification")) %>%
-      filter(!source %in% c("hiv", "hiv_other")) %>%
+             Flow = ifelse(source_state == 1, "Garbage", "Misclassification"),
+             Flow = ifelse((source == target & Flow == "Garbage"), "-", Flow),
+             Flow = factor(Flow, levels = c("-", "Garbage", "Misclassification"))
+      ) %>%
+      filter(!(Flow == "Misclassification" & source == target)) %>%
+      arrange(Flow) %>%
       rename("Origin COD" = source,
              "Reallocated COD" = target,
              Deaths = deaths
              ) %>%
       select(Country, Year, "Age group", Sex, Flow, "Origin COD", "Reallocated COD", Deaths)
-  })
+  }, options = list(pageLength = 1000, info = FALSE))
 
 
   output$sankey <- renderSankeyNetwork({

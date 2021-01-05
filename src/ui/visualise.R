@@ -38,7 +38,14 @@ visualise <- function() {
         
         tabsetPanel(
           tabPanel(title = HTML("<b style='font-size:18px'>Sankey</b>"),
-                   fluidRow(style="height: 80vh",
+                   fluidRow(
+                       shinyjs::hidden(div(style="display:flex; justify-content: space-around",
+                        id = "titles",
+                        h3("Garbage"),
+                        h3("Misclassification")
+                        )   
+                   )),
+                   fluidRow(style="height: 40vh",
                           sankeyNetworkOutput("sankey")
                    )
           ),

@@ -12,6 +12,7 @@ library(naomi)
 # source("src/server/data_prep_server.R")
 source("src/server/select_options_surver.R")
 source("src/server/sankey_server.R")
+source("src/server/methods_server.R")
 
 
 source("src/ui/navigation.R")
