@@ -38,7 +38,7 @@ visualise <- function() {
         
         tabsetPanel(
           tabPanel(title = HTML("<b style='font-size:18px'>Sankey</b>"),
-                   fluidRow(
+                   fluidRow(style="height: 80vh",
                           sankeyNetworkOutput("sankey")
                    )
           ),

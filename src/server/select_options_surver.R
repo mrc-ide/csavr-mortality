@@ -5,20 +5,27 @@ select_options_surver <- function(input, output, session) {
   })
 
   output$period_option <- renderUI({
-    selectizeInput(inputId = "period", label = "2) Year:", choices=sort(unique(full_dat$period), decreasing=FALSE), selected = "")
+    selectizeInput(inputId = "period", label = "2) Year:", choices=NULL, selected = '')
+    # selectizeInput(inputId = "period", label = "2) Year:", choices=sort(unique(full_dat$period), decreasing=FALSE), selected = "")
   })
 
   output$age_option <- renderUI({
-    selectizeInput(inputId = "age", label = "3) Age group:", choices=as.character(unique(arrange(full_dat, age_group_id)$age_group)), selected = "")
+    # selectizeInput(inputId = "age", label = "3) Age group:", choices=naomi::get_age_groups() %>% 
+    #                                                                    filter(age_group_sort_order %in% c(3, 16:29)) %>%
+    #                                                                    arrange(age_group_sort_order) %>%
+    #                                                                    .$age_group_label, 
+    #                selected = "")
+    selectizeInput(inputId = "age", label = "3) Age group:", choices=NULL, selected = '')
   })
 
   output$sex_option <- renderUI({
-    selectizeInput(inputId = "sex", label = "4) Sex:", choices=as.character(unique(full_dat$sex)), selected="")
+    selectizeInput(inputId = "sex", label = "4) Sex:", choices= NULL, selected= '')
   })
   
   observeEvent(input$country, {
     
     period_input_choices <- full_dat %>%
+      select(area_name, period) %>%
       filter(area_name == input$country) %>%
       .$period %>%
       unique %>%
@@ -36,9 +43,10 @@ select_options_surver <- function(input, output, session) {
   observeEvent(input$period, {
     
     age_input_choices <- full_dat %>%
+      select(area_name, period, age_group_sort_order, age_group) %>%
       filter(area_name == input$country,
              period == input$period) %>%
-      arrange(age_group_id) %>%
+      arrange(age_group_sort_order) %>%
       .$age_group %>%
       unique
     
@@ -53,6 +61,7 @@ select_options_surver <- function(input, output, session) {
     
     
     sex_input_choices <- full_dat %>%
+      select(area_name, period, age_group_sort_order, age_group, sex) %>%
       filter(area_name == input$country,
              period == input$period,
              age_group == input$age) %>%

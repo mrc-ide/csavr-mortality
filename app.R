@@ -5,6 +5,7 @@ library(shinyjs)
 library(htmlwidgets)
 library(networkD3)
 library(countrycode)
+library(naomi)
 
 # source("src/data_manip.R") 
 
