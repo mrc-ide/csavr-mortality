@@ -1,6 +1,6 @@
 methods_server <- function(input, output, session) {
   
-  citations <- read.csv("citations.csv")
+  citations <<- read.csv("citations.csv")
 
   output$info <- renderText({
     
@@ -16,5 +16,7 @@ methods_server <- function(input, output, session) {
           filter(citations, iso3 == countrycode(input$country, "country.name", "iso3c"), period == input$period)$note
     )
   })
+  
+  
   
 }

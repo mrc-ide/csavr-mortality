@@ -1,0 +1,560 @@
+acause,cause_name
+_all,All causes
+_comm,"Communicable, maternal, neonatal, and nutritional diseases"
+_hiv_std,HIV/AIDS and sexually transmitted infections
+hiv,HIV/AIDS
+hiv_tb_other,HIV/AIDS - Drug-susceptible Tuberculosis
+hiv_tb_mdr,HIV/AIDS - Multidrug-resistant Tuberculosis without extensive drug resistance
+hiv_tb_xdr,HIV/AIDS - Extensively drug-resistant Tuberculosis
+hiv_other,HIV/AIDS resulting in other diseases
+std,Sexually transmitted infections excluding HIV
+std_syphilis,Syphilis
+std_chlamydia,Chlamydial infection
+std_gonnorhea,Gonococcal infection
+std_tricho,Trichomoniasis
+std_herpes,Genital herpes
+std_other,Other sexually transmitted infections
+_ri,Respiratory infections and tuberculosis
+tb,Tuberculosis
+tb_latent,Latent tuberculosis infection
+tb_other,Drug-susceptible tuberculosis
+tb_resp,Respiratory tuberculosis
+tb_cns,Tuberculosis of nervous system
+tb_bone,Tuberculosis of bones and joints
+tb_gyne,Tuberculosis of genitourinary system
+tb_peripheral,Tuberculous peripheral lymphadenopathy
+tb_digst,"Tuberculosis of intestines, peritoneum and mesenteric glands"
+tb_other_organ,Tuberculosis of other organs
+tb_mdr,Multidrug-resistant tuberculosis without extensive drug resistance
+tb_xdr,Extensively drug-resistant tuberculosis
+lri,Lower respiratory infections
+lri_flu,Influenza
+lri_pneumo,Pneumococcal pneumonia
+lri_hib,H influenzae type B pneumonia
+lri_gbs,Group B streptococcus lri
+lri_rsv,Respiratory syncytial virus pneumonia
+lri_other,Other lower respiratory infections
+uri,Upper respiratory infections
+otitis,Otitis media
+lri_corona,COVID-19
+_enteric_all,Enteric infections
+diarrhea,Diarrheal diseases
+diarrhea_cholera,Cholera
+diarrhea_salmonella,Other salmonella infections
+diarrhea_shigellosis,Shigellosis
+diarrhea_epec,Enteropathogenic E coli infection
+diarrhea_etec,Enterotoxigenic E coli infection
+diarrhea_campylobac,Campylobacter enteritis
+diarrhea_amoebiasis,Amoebiasis
+diarrhea_cryptospor,Cryptosporidiosis
+diarrhea_rotavirus,Rotaviral enteritis
+diarrhea_aeromonas,Aeromonas
+diarrhea_clostridium,Clostridium difficile
+diarrhea_norovirus,Norovirus
+diarrhea_adenovirus,Adenovirus
+diarrhea_foodborne,Other bacterial foodborne diarrhea
+diarrhea_other,Other diarrheal diseases
+intest_typhpartyph,Typhoid and paratyphoid
+intest_typhoid,Typhoid fever
+intest_paratyph,Paratyphoid fever
+intest_ints,Invasive Non-typhoidal Salmonella (iNTS)
+polio,Poliomyelitis
+intest_other,Other intestinal infectious diseases
+_ntd,Neglected tropical diseases and malaria
+malaria,Malaria
+malaria_falciparum,Malaria falciparum
+malaria_vivax,Malaria vivax
+malaria_other,Other type and mix form of malaria
+ntd_chagas,Chagas disease
+ntd_leish,Leishmaniasis
+ntd_leish_visc,Visceral leishmaniasis
+ntd_leish_cut,Cutaneous and mucocutaneous leishmaniasis
+ntd_afrtryp,African trypanosomiasis
+ntd_schisto,Schistosomiasis
+ntd_cysticer,Cysticercosis
+ntd_echino,Cystic echinococcosis
+ntd_lf,Lymphatic filariasis
+ntd_oncho,Onchocerciasis
+ntd_trachoma,Trachoma
+ntd_dengue,Dengue
+ntd_yellowfever,Yellow fever
+ntd_rabies,Rabies
+ntd_nema,Intestinal nematode infections
+ntd_nema_ascar,Ascariasis
+ntd_nema_trichur,Trichuriasis
+ntd_nema_hook,Hookworm disease
+ntd_foodborne,Food-borne trematodiases
+leprosy,Leprosy
+ntd_ebola,Ebola
+ntd_zika,Zika virus
+ntd_guinea,Guinea worm disease
+ntd_other,Other neglected tropical diseases
+_infect,Other infectious diseases
+meningitis,Meningitis
+meningitis_pneumo,Pneumococcal meningitis
+meningitis_hib,H influenzae type B meningitis
+meningitis_gbs,Group B streptococcus meningitis
+meningitis_meningo,Meningococcal meningitis
+meningitis_viral,Viral meningitis
+meningitis_other,Other meningitis
+encephalitis,Encephalitis
+diptheria,Diphtheria
+whooping,Pertussis
+tetanus,Tetanus
+measles,Measles
+varicella,Varicella and herpes zoster
+rubella,Rubella
+mumps,Mumps
+hepatitis,Acute hepatitis
+hepatitis_a,Acute hepatitis A
+hepatitis_b,Acute hepatitis B
+hepatitis_c,Acute hepatitis C
+hepatitis_e,Acute hepatitis E
+zoonotic,Zoonotic bacterial diseases
+herpes,Non-genital herpes infection
+infectious,Other unspecified infectious diseases
+infectious_drug,Other drug-resistant infectious diseases
+mater_neonat,Maternal and neonatal disorders
+maternal,Maternal disorders
+maternal_hem,Maternal hemorrhage
+maternal_sepsis,Maternal sepsis and other maternal infections
+maternal_htn,Maternal hypertensive disorders
+maternal_obstruct,Maternal obstructed labor and uterine rupture
+maternal_abort_mis,Maternal abortion and miscarriage
+maternal_abort_spont,Spontaneous abortion
+maternal_abort_induc,Induced abortion
+maternal_abort_ectopic,Ectopic pregnancy
+maternal_indirect,Indirect maternal deaths
+maternal_late,Late maternal deaths
+maternal_hiv,Maternal deaths aggravated by HIV/AIDS
+maternal_delivery,Maternal delivery
+maternal_pregnancy,Pregnancy and postpartum care
+maternal_other,Other direct maternal disorders
+neonatal,Neonatal disorders
+neonatal_preterm,Neonatal preterm birth
+neonatal_enceph,Neonatal encephalopathy due to birth asphyxia and trauma
+neonatal_sepsis,Neonatal sepsis and other neonatal infections
+neonatal_sepsis_gbs,Group B streptococcus neonatal sepsis
+neonatal_hemolytic,Hemolytic disease and other neonatal jaundice
+neonatal_other,Other neonatal disorders
+nutrition,Nutritional deficiencies
+nutrition_pem,Protein-energy malnutrition
+nutrition_iodine,Iodine deficiency
+nutrition_vitamina,Vitamin A deficiency
+nutrition_iron,Dietary iron deficiency
+nutrition_other,Other nutritional deficiencies
+_ncd,Non-communicable diseases
+_neo,Neoplasms
+neo_mouth,Lip and oral cavity cancer
+neo_nasopharynx,Nasopharynx cancer
+neo_otherpharynx,Other pharynx cancer
+neo_esophageal,Esophageal cancer
+neo_stomach,Stomach cancer
+neo_colorectal,Colon and rectum cancer
+neo_liver,Liver cancer
+neo_liver_hepb,Liver cancer due to hepatitis B
+neo_liver_hepc,Liver cancer due to hepatitis C
+neo_liver_alcohol,Liver cancer due to alcohol use
+neo_liver_nash,Liver cancer due to NASH
+neo_liver_hbl,Hepatoblastoma
+neo_liver_other,Liver cancer due to other causes (internal)
+neo_gallbladder,Gallbladder and biliary tract cancer
+neo_pancreas,Pancreatic cancer
+neo_larynx,Larynx cancer
+neo_lung,"Tracheal, bronchus, and lung cancer"
+neo_melanoma,Malignant skin melanoma
+neo_nmsc,Non-melanoma skin cancer
+neo_nmsc_scc,Non-melanoma skin cancer (squamous-cell carcinoma)
+neo_nmsc_bcc,Non-melanoma skin cancer (basal-cell carcinoma)
+neo_tissue_sarcoma,Soft tissue and other extraosseous sarcomas
+neo_bone,Malignant neoplasm of bone and articular cartilage
+neo_breast,Breast cancer
+neo_cervical,Cervical cancer
+neo_uterine,Uterine cancer
+neo_ovarian,Ovarian cancer
+neo_prostate,Prostate cancer
+neo_testicular,Testicular cancer
+neo_kidney,Kidney cancer
+neo_bladder,Bladder cancer
+neo_brain,Brain and central nervous system cancer
+neo_eye,Eye cancer
+neo_eye_rb,Retinoblastoma
+neo_eye_other,Other eye cancers
+neo_neuro,Neuroblastoma and other peripheral nervous cell tumors
+neo_thyroid,Thyroid cancer
+neo_meso,Mesothelioma
+neo_hodgkins,Hodgkin lymphoma
+neo_lymphoma,Non-Hodgkin lymphoma
+neo_lymphoma_burkitt,Burkitt lymphoma
+neo_lymphoma_other,Other non-Hodgkin lymphoma
+neo_myeloma,Multiple myeloma
+neo_leukemia,Leukemia
+neo_leukemia_ll_acute,Acute lymphoid leukemia
+neo_leukemia_ll_chronic,Chronic lymphoid leukemia
+neo_leukemia_ml_acute,Acute myeloid leukemia
+neo_leukemia_ml_chronic,Chronic myeloid leukemia
+neo_leukemia_other,Other leukemia
+neo_other_cancer,Other malignant neoplasms (internal)
+neo_other_benign,Other neoplasms
+neo_ben_blood,"Myelodysplastic, myeloproliferative, and other hematopoietic neoplasms"
+neo_ben_intest,Benign and in situ intestinal neoplasms
+neo_ben_utr,Benign and in situ cervical and uterine neoplasms
+neo_ben_brain,Benign and in situ CNS neoplasms
+neo_ben_other,Other benign and in situ neoplasms
+cvd,Cardiovascular diseases
+cvd_rhd,Rheumatic heart disease
+cvd_ihd,Ischemic heart disease
+cvd_ihd_angina,Angina
+cvd_ihd_acute,Acute myocardial infarction
+cvd_ihd_chronic,Chronic ischemic heart disease
+cvd_stroke,Stroke
+cvd_stroke_isch,Ischemic stroke
+cvd_stroke_cerhem,Intracerebral hemorrhage
+cvd_stroke_subhem,Subarachnoid hemorrhage
+cvd_htn,Hypertensive heart disease
+cvd_valvu,Non-rheumatic valvular heart disease
+cvd_valvu_aort,Non-rheumatic calcific aortic valve disease
+cvd_valvu_mitral,Non-rheumatic degenerative mitral valve disease
+cvd_valvu_other,Other non-rheumatic valve diseases
+cvd_cmp,Cardiomyopathy and myocarditis
+cvd_cmp_myocarditis,Myocarditis
+cvd_cmp_alcoholic,Alcoholic cardiomyopathy
+cvd_cmp_other,Other cardiomyopathy
+cvd_pah,Pulmonary Arterial Hypertension
+cvd_afib,Atrial fibrillation and flutter
+cvd_aortic,Aortic aneurysm
+cvd_pvd,Lower extremity peripheral arterial disease
+cvd_endo,Endocarditis
+cvd_phlebitis,Phlebitis and thrombophlebitis
+cvd_varicose,Varicose veins
+cvd_other,Other cardiovascular and circulatory diseases (internal)
+resp,Chronic respiratory diseases
+resp_copd,Chronic obstructive pulmonary disease
+resp_pneum,Pneumoconiosis
+resp_pneum_silico,Silicosis
+resp_pneum_asbest,Asbestosis
+resp_pneum_coal,Coal workers pneumoconiosis
+resp_pneum_other,Other pneumoconiosis
+resp_asthma,Asthma
+resp_interstitial,Interstitial lung disease and pulmonary sarcoidosis
+resp_upper,Chronic diseases of upper respiratory system
+resp_allergic,Allergic disorders of upper respiratory system
+resp_apnea,Sleep apnea
+resp_other,Other chronic respiratory diseases
+digest,Digestive diseases
+cirrhosis,Cirrhosis and other chronic liver diseases
+cirrhosis_hepb,Cirrhosis and other chronic liver diseases due to hepatitis B
+cirrhosis_hepc,Cirrhosis and other chronic liver diseases due to hepatitis C
+cirrhosis_alcohol,Cirrhosis and other chronic liver diseases due to alcohol use
+cirrhosis_nash,Cirrhosis and other chronic liver diseases due to NAFLD
+cirrhosis_other,Cirrhosis and other chronic liver diseases due to other causes
+digest_upper,Upper digestive system diseases
+digest_pud,Peptic ulcer disease
+digest_gastritis,Gastritis and duodenitis
+digest_gerd,Gastroesophageal reflux disease
+digest_appendicitis,Appendicitis
+digest_ileus,Paralytic ileus and intestinal obstruction
+digest_hernia,"Inguinal, femoral, and abdominal hernia"
+digest_hernia_inguinal,Inguinal hernia
+digest_hernia_femoral,Femoral hernia
+digest_hernia_diaphragm,Diaphragmatic hernia
+digest_hernia_abdominal,Abdominal and other hernia
+digest_ibd,Inflammatory bowel disease
+digest_ibd_colitis,Ulcerative colitis
+digest_ibd_crohns,Crohn's disease
+digest_vascular,Vascular intestinal disorders
+digest_bile,Gallbladder and biliary diseases
+digest_pancreatitis,Pancreatitis
+digest_diverticular,Diverticular disease of intestines
+digest_constipation,Constipation
+digest_hemorrhoids,"Hemorrhoids, anal fissure, anal abscess, and fistula"
+digest_celiac,Celiac disease
+digest_esophag,Esophageal diseases
+digest_other,Other digestive diseases
+_neuro,Neurological disorders
+neuro_dementia,Alzheimer's disease and other dementias
+neuro_parkinsons,Parkinson's disease
+neuro_epilepsy,Idiopathic epilepsy
+neuro_ms,Multiple sclerosis
+neuro_neurone,Motor neuron disease
+neuro_headach,Headache disorders
+neuro_migraine,Migraine
+neuro_tensache,Tension-type headache
+neuro_other,Other neurological disorders
+neuro_carpal,Carpal and tarsal tunnel syndrome
+neuro_pathy,Neuropathies in head and face
+neuro_pathy_bells,Bell's palsy
+neuro_pathy_nerve,Disorders of trigeminal and other cranial nerve
+neuro_fibromyalgia,Fibromyalgia and other neuropathies
+neuro_dystrophy,Muscular dystrophy
+_mental,Mental disorders
+mental_schizo,Schizophrenia
+mental_unipolar,Depressive disorders
+mental_unipolar_mdd,Major depressive disorder
+mental_unipolar_dys,Dysthymia
+mental_bipolar,Bipolar disorder
+mental_anxiety,Anxiety disorders
+mental_eating,Eating disorders
+mental_eating_anorexia,Anorexia nervosa
+mental_eating_bulimia,Bulimia nervosa
+mental_pdd,Autism spectrum disorders
+mental_adhd,Attention-deficit/hyperactivity disorder
+mental_conduct,Conduct disorder
+mental_conduct_antisocial,Anti-social personality disorder
+mental_conduct_borderline,Borderline personality disorder
+mental_id,Idiopathic developmental intellectual disability
+mental_somatoform,Somatoform disorders
+mental_insomnia,Insomnia and other sleep disorders
+mental_other,Other mental disorders
+_subs,Substance use disorders
+mental_alcohol,Alcohol use disorders
+mental_drug,Drug use disorders
+mental_drug_opioids,Opioid use disorders
+mental_drug_cocaine,Cocaine use disorders
+mental_drug_amphet,Amphetamine use disorders
+mental_drug_cannabis,Cannabis use disorders
+mental_drug_other,Other drug use disorders
+diab_ckd,Diabetes and kidney diseases
+diabetes,Diabetes mellitus
+diabetes_typ1,Diabetes mellitus type 1
+diabetes_typ2,Diabetes mellitus type 2
+ckd,Chronic kidney disease
+ckd_diabetes_typ1,Chronic kidney disease due to diabetes mellitus type 1
+ckd_diabetes_typ2,Chronic kidney disease due to diabetes mellitus type 2
+ckd_htn,Chronic kidney disease due to hypertension
+ckd_glomerulo,Chronic kidney disease due to glomerulonephritis
+ckd_other,Chronic kidney disease due to other and unspecified causes
+glomerulo,Acute glomerulonephritis
+skin,Skin and subcutaneous diseases
+skin_eczema,Dermatitis
+skin_eczema_atopy,Atopic dermatitis
+skin_eczema_contact,Contact dermatitis
+skin_eczema_sebor,Seborrhoeic dermatitis
+skin_psoriasis,Psoriasis
+skin_infect,Bacterial skin diseases
+skin_cellulitis,Cellulitis
+skin_bacterial,Pyoderma
+skin_scabies,Scabies
+skin_fungal,Fungal skin diseases
+skin_viral,Viral skin diseases
+skin_acne,Acne vulgaris
+skin_alopecia,Alopecia areata
+skin_pruritus,Pruritus
+skin_urticaria,Urticaria
+skin_decubitus,Decubitus ulcer
+skin_keratosis,Actinic and seborrhoeic keratosis
+skin_vitiligo,Vitiligo and other pigmentation disorders
+skin_other,Other skin and subcutaneous diseases
+_sense,Sense organ diseases
+sense_visionlos,Blindness and vision loss
+sense_glaucoma,Glaucoma
+sense_cataract,Cataract
+sense_macular,Age-related macular degeneration
+sense_refrac_dis,Refraction disorders
+sense_presbyopia,Near vision loss
+sense_vision,Other vision loss
+sense_conjunct,Conjunctivitis and other eye infections
+sense_hearing,Age-related and other hearing loss
+sense_externear,Otitis external and other external ear disorders
+sense_vertigo,"Ménières, labyrinthitis, and vertiginous syndromes"
+sense_other,Other sense organ diseases
+msk,Musculoskeletal disorders
+msk_rheumarthritis,Rheumatoid arthritis
+msk_osteoarthritis,Osteoarthritis
+msk_osteo_hip,Osteoarthritis hip
+msk_osteo_knee,Osteoarthritis knee
+msk_osteo_hand_foot,Osteoarthritis hand
+msk_osteo_other,Osteoarthritis other
+msk_pain_lowback,Low back pain
+msk_pain_neck,Neck pain
+msk_gout,Gout
+msk_oestoporosis,Osteoporosis and related pathological fracture
+msk_pyoarthritis,Pyogenic and reactive arthritis
+msk_lupus,Systemic and discoid lupus erythematous
+msk_shoulderlesion,Shoulder lesions
+msk_osteomyelitis,Osteomyelitis non-traumatic
+msk_myositis,Other myositis
+msk_other,Other musculoskeletal disorders
+_otherncd,Other non-communicable diseases
+cong,Congenital birth defects
+cong_neural,Neural tube defects
+cong_heart,Congenital heart anomalies
+cong_cleft,Orofacial clefts
+cong_downs,Down syndrome
+cong_turner,Turner syndrome
+cong_klinefelter,Klinefelter syndrome
+cong_chromo,Other chromosomal abnormalities
+cong_msk,Congenital musculoskeletal and limb anomalies
+cong_urogenital,Urogenital congenital anomalies
+cong_digestive,Digestive congenital anomalies
+cong_other,Other congenital birth defects
+urinary,Urinary diseases and male infertility
+urinary_nephritis,Urinary tract infections and interstitial nephritis
+urinary_urolithiasis,Urolithiasis
+urinary_bph,Benign prostatic hyperplasia
+urinary_maleinfert,Male infertility
+urinary_prostatitis,Prostatitis and epididymitis
+urinary_stricture,"Urethral stricture, phimosis, and paraphimosis"
+urinary_incontinence,Urinary incontinence
+urinary_other,Other urinary diseases
+gyne,Gynecological diseases
+gyne_fibroids,Uterine fibroids
+gyne_polycystic,Polycystic ovarian syndrome
+gyne_femaleinfert,Female infertility
+gyne_endometr,Endometriosis
+gyne_prolapse,Genital prolapse
+gyne_pms,Premenstrual syndrome
+gyne_inflamm,"Inflammatory diseases of cervix, vagina, and vulva"
+gyne_ovarcysts,Ovarian cysts and other ovarian disorders
+gyne_candidiasis,Genital candidiasis
+gyne_other,Other gynecological diseases
+hemog,Hemoglobinopathies and hemolytic anemias
+hemog_thalass,Thalassemias
+hemog_thalasstrait,Thalassemias trait
+hemog_sickle,Sickle cell disorders
+hemog_sickletrait,Sickle cell trait
+hemog_g6pd,G6PD deficiency
+hemog_g6pdtrait,G6PD trait
+hemog_aplastic,Aplastic anemias
+hemog_other,Other hemoglobinopathies and hemolytic anemias
+endo,"Endocrine, metabolic, blood, and immune disorders"
+endo_thyroid,Thyroid diseases
+endo_hypothyroid,Hypothyroidism
+endo_hyperthyroid,Hyperthyroidism
+endo_obesity,Obesity
+endo_lipoprotein,Lipoprotein metabolism and other lipidaemias disorders
+endo_cystic,Cystic fibrosis
+endo_other,"Other endocrine, metabolic, blood, and immune disorders"
+_oral,Oral disorders
+oral_decidcaries,Caries of deciduous teeth
+oral_permcaries,Caries of permanent teeth
+oral_perio,Periodontal diseases
+oral_edent,Edentulism
+oral_other,Other oral disorders
+sids,Sudden infant death syndrome
+_inj,Injuries
+inj_trans,Transport injuries
+inj_trans_road,Road injuries
+inj_trans_road_pedest,Pedestrian road injuries
+inj_trans_road_pedal,Cyclist road injuries
+inj_trans_road_2wheel,Motorcyclist road injuries
+inj_trans_road_4wheel,Motor vehicle road injuries
+inj_trans_road_other,Other road injuries
+inj_trans_other,Other transport injuries
+_unintent,Unintentional injuries
+inj_falls,Falls
+inj_drowning,Drowning
+inj_fires,"Fire, heat, and hot substances"
+inj_poisoning,Poisonings
+inj_poisoning_gas,Poisoning by carbon monoxide
+inj_poisoning_pesti,Poisoning by pesticides
+inj_poisoning_other,Poisoning by other means
+inj_mech,Exposure to mechanical forces
+inj_mech_gun,Unintentional firearm injuries
+inj_mech_other,Other exposure to mechanical forces
+inj_medical,Adverse effects of medical treatment
+endo_procedural,Post procedural or drug treatment disorders
+inj_animal,Animal contact
+inj_animal_venom,Venomous animal contact
+inj_animal_venom_snake,Contact with snakes and lizards
+inj_animal_venom_spider,Contact with spiders
+inj_animal_venom_scorpion,Contact with scorpions
+inj_animal_venom_bees,"Contact with hornets, wasps and bees"
+inj_animal_venom_other,Contact with other venomous
+inj_animal_nonven,Non-venomous animal contact
+inj_foreign,Foreign body
+inj_foreign_aspiration,Pulmonary aspiration and foreign body in airway
+inj_foreign_eye,Foreign body in eyes
+inj_foreign_other,Foreign body in other body part
+inj_electrocution,Electrocution
+inj_non_disaster,Environmental heat and cold exposure
+inj_disaster,Exposure to forces of nature
+inj_disaster_light,Victim of lightning
+inj_disaster_earth,Earthquake
+inj_disaster_volcan,Volcanic eruption
+inj_disaster_avalanch,"Avalanche, landslide and other earth movements"
+inj_disaster_storm,Cataclysmic storm
+inj_disaster_flood,Flood
+inj_disaster_other,Other forms of forces of nature
+inj_othunintent,Other unintentional injuries
+_intent,Self-harm and interpersonal violence
+inj_suicide,Self-harm
+inj_suicide_hang,"Self-harm by hanging, strangulation, and suffocation"
+inj_suicide_fire,"Self-harm by fire, heat, and hot substances"
+inj_suicide_firearm,Self-harm by firearm
+inj_suicide_pesti,Self-harm by poisoning pesticides
+inj_suicide_other,Self-harm by other specified means
+inj_homicide,Interpersonal violence
+inj_homicide_gun,Physical violence by firearm
+inj_homicide_knife,Physical violence by sharp object
+inj_homicide_sexual,Sexual violence
+inj_homicide_other,Physical violence by other means
+inj_war_warterror,Conflict and terrorism
+inj_war_terrorism,Terrorism
+inj_war_war,Military operations
+inj_war_execution,Police conflict and executions
+_none,None
+_gc,Garbage Code
+_sb,Still Born
+mor_septicemia,Septicemia
+mor_chf,Congestive heart failure
+mor_fluid,Fluid and electrolyte disorders
+mor_bp,Hypertension
+mor_pephd,Pulmonary embolism and pulmonary heart diseases
+mor_stroke_un,Unspecified stroke
+mor_lri_un,Unspecified lower respiratory infection
+mor_pneumonitis,Pneumonitis
+N1,"Amputation of lower limbs, bilateral"
+N10,Lower airway burns
+N11,Dislocation of hip
+N12,Dislocation of knee
+N13,Dislocation of shoulder
+N14,"Muscle and tendon injuries, including sprains and strains lesser dislocations"
+N15,"Fracture of clavicle, scapula, or humerus"
+N16,Fracture of face bones
+N17,Fracture of foot bones except ankle
+N18,Fracture of hand (wrist and other distal part of hand)
+N19,Fracture of hip
+N2,"Amputation of upper limbs, bilateral"
+N20,"Fracture of patella, tibia or fibula, or ankle"
+N21,Fracture of pelvis
+N22,Fracture of radius and/or ulna
+N23,Fracture of skull
+N24,Fracture of sternum and/or fracture of one or more ribs
+N25,Fracture of vertebral column
+N26,"Fracture of femur, other than femoral neck"
+N27,Minor TBI
+N28,Moderate TBI
+N29,Severe TBI
+N3,Amputation of fingers (excluding thumb)
+N30,Foreign body in ear
+N31,Foreign body in respiratory system
+N32,Foreign body in GI and urogenital system
+N33,Spinal cord lesion at neck level
+N34,Spinal cord lesion below neck level
+N35,Drowning and nonfatal submersion
+N36,Asphyxiation
+N37,Crush injury
+N38,Nerve injury
+N39,Injury to eyes
+N4,"Amputation of lower limb, unilateral"
+N40,Open wound(s)
+N41,Poisoning requiring urgent care
+N42,Severe chest Injury
+N43,Internal hemorrhage in abdomen and pelvis
+N44,Contusion in any part of the body
+N45,Effect of different environmental factors
+N46,Complications following therapeutic procedures
+N47,Superficial injury of any part of the body
+N48,"Multiple fractures, dislocations, crashes, wounds, pains, and strains"
+NL49,Long term sequelae for TBI
+N5,"Amputation of upper limb, unilateral"
+NL50,Long term sequelae due to the injuries in skeletal system
+N6,Amputation of thumb
+N7,Amputation of toe/toes
+N8,"Burns, <20% total burned surface area without lower airway burns"
+N9,"Burns, >=20% total burned surface area or >= 10% burned surface area if head/neck or hands/wrist involved w/o lower airway burns"
+Ncc_code,Ncc_code
+cc_code,CC code
+sub_total,Subtotal
+N_unsp,"N-code, (unspecified site in N code)"
