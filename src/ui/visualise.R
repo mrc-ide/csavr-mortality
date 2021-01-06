@@ -50,6 +50,7 @@ visualise <- function() {
                    )
           ),
           tabPanel(title = HTML("<b style='font-size:18px'>Table</b>"),
+                   downloadButton("download_data_table", "Download data"),
                    DTOutput("links_sankey_df")
           )
         )

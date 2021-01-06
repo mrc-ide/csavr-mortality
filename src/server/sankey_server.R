@@ -60,12 +60,11 @@ sankey_surver <- function(input, output, session) {
 
 
   })
-
-
-  output$links_sankey_df <- renderDT({
-
+  
+  cod_df <- reactive({
+    
     req(sankey_inputs$links_dat)
-
+    
     sankey_inputs$links_dat %>%
       mutate(Country = input$country,
              "Age group" = input$age,
@@ -80,8 +79,18 @@ sankey_surver <- function(input, output, session) {
       rename("Origin COD" = source,
              "Reallocated COD" = target,
              Deaths = deaths
-             ) %>%
+      ) %>%
       select(Country, Year, "Age group", Sex, Flow, "Origin COD", "Reallocated COD", Deaths)
+    
+  })
+
+
+  output$links_sankey_df <- renderDT({
+
+    req(sankey_inputs$links_dat)
+
+    cod_df()
+    
   }, options = list(pageLength = 1000, info = FALSE))
 
 
@@ -110,6 +119,22 @@ sankey_surver <- function(input, output, session) {
       return(sn)
 
   })
+  
+  output$download_data_table <- downloadHandler(
+    
+    filename = function() {
+      paste(input$country, input$age, input$period, "cod.xlsx", sep="_")
+    },
+    content = function(file) {
+      
+      meta <- filter(citations, iso3 == countrycode(input$country, "country.name", "iso3c"), period == input$period)
+      
+      write_xlsx(x = list(
+        "Metadata" = meta,
+        "CoD data" = cod_df()
+      ), file)
+    }
+  )
 
 
 }

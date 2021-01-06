@@ -6,6 +6,7 @@ library(htmlwidgets)
 library(networkD3)
 library(countrycode)
 library(naomi)
+library(writexl)
 
 # source("src/data_manip.R") 
 

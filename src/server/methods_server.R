@@ -2,7 +2,6 @@ methods_server <- function(input, output, session) {
   
   citations <- read.csv("citations.csv")
 
-  
   output$info <- renderText({
     
     req(input$country, input$period)
