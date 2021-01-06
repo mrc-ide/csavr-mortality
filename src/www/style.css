@@ -1,3 +1,19 @@
 #sankey {
   height: 80vh !important;
 }
+
+#footer_img {
+  height: 100%;
+  margin-right: 40px;
+}
+
+#footer {
+ position:fixed; 
+ bottom:10px;
+ right: 0px;
+ height:15vh;
+ width: 80%;
+ display:flex;
+ align-items: center;
+ justify-content: flex-end;
+}
