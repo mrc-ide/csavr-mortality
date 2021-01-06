@@ -6,3 +6,8 @@ packages:
  - htmlwidgets
  - networkD3
  - countrycode
+ - naomi
+ - writexl
+package_sources:
+  github:
+    - mrc-ide/naomi
