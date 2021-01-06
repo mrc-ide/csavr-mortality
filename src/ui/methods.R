@@ -1,5 +1,5 @@
 methods <- function() {
-  div(style="margin-left:2%; margin-right: 2%",
+  div(style="margin-left:10%; margin-right: 40%; text-align: justify",
       h2("Methods and sources"),
       br(),
       h3("Methods"),

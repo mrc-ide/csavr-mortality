@@ -1,5 +1,5 @@
 introduction <- function() {
-  div(style="margin-left:20%; margin-right: 20%",
+  div(style="margin-left:10%; margin-right: 40%; text-align: justify",
       h2("Cause of Death reallocation visualiser"),
       br(),
       p("This tool assists in visualising the reallocation of cause of death data, correcting for misclassification and unknown causes of death in vital registration systems"),
