@@ -6,8 +6,7 @@ visualise <- function() {
           column(2, uiOutput("country_option")),
           column(2, uiOutput("period_option")),
           column(2, uiOutput("age_option")),
-          column(2, uiOutput("sex_option")),
-          textOutput("tab_id")
+          column(2, uiOutput("sex_option"))
           # column(3, 
           #        selectInput("country", "Country:",
           #                    sort(unique(full_dat$area_name)),
