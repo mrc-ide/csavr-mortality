@@ -5,22 +5,56 @@ select_options_surver <- function(input, output, session) {
   })
 
   output$period_option <- renderUI({
-    selectizeInput(inputId = "period", label = "2) Year:", choices=NULL, selected = '')
-    # selectizeInput(inputId = "period", label = "2) Year:", choices=sort(unique(full_dat$period), decreasing=FALSE), selected = "")
+    shinyjs::disabled(selectizeInput(inputId = "period", label = "2) Year:", choices=NULL, selected = ''))
   })
 
   output$age_option <- renderUI({
-    # selectizeInput(inputId = "age", label = "3) Age group:", choices=naomi::get_age_groups() %>% 
-    #                                                                    filter(age_group_sort_order %in% c(3, 16:29)) %>%
-    #                                                                    arrange(age_group_sort_order) %>%
-    #                                                                    .$age_group_label, 
-    #                selected = "")
-    selectizeInput(inputId = "age", label = "3) Age group:", choices=NULL, selected = '')
+    shinyjs::disabled(selectizeInput(inputId = "age", label = "3) Age group:", choices='15+', selected = '15+'))
   })
 
   output$sex_option <- renderUI({
-    selectizeInput(inputId = "sex", label = "4) Sex:", choices= NULL, selected= '')
+    shinyjs::disabled(selectizeInput(inputId = "sex", label = "4) Sex:", choices= 'both', selected= 'both'))
   })
+  
+  observe({
+    
+    if(input$tabs == "time_trend") {
+      
+      shinyjs::disable("period")
+      shinyjs::disable("age")
+      shinyjs::disable("sex")
+      
+      updateSelectizeInput(session = getDefaultReactiveDomain(), inputId = "period", choices = "", selected = "")
+      updateSelectizeInput(session = getDefaultReactiveDomain(), inputId = "age", choices = "15+", selected = "15+")
+      updateSelectizeInput(session = getDefaultReactiveDomain(), inputId = "sex", choices = "both", selected = "both")
+      
+      tab_watcher <<- "time_trend"
+      
+    } else if(input$tabs != "time_trend" & tab_watcher == "time_trend") {
+      
+      shinyjs::enable("period")
+      shinyjs::enable("age")
+      shinyjs::enable("sex")
+      
+      updateSelectizeInput(session = getDefaultReactiveDomain(), inputId = "age", choices = "", selected = "")
+      updateSelectizeInput(session = getDefaultReactiveDomain(), inputId = "sex", choices = "", selected = "")
+      
+      period_input_choices <- full_dat %>%
+        select(area_name, period) %>%
+        filter(area_name == input$country) %>%
+        .$period %>%
+        unique %>%
+        as.numeric %>%
+        sort(decreasing = FALSE)
+      
+      updateSelectizeInput(session = getDefaultReactiveDomain(), inputId = "period", choices = period_input_choices, selected = "")
+      
+      tab_watcher <<- "not_time_trend"
+      
+    } 
+    
+  })
+  
   
   observeEvent(input$country, {
     
@@ -35,7 +69,11 @@ select_options_surver <- function(input, output, session) {
       as.numeric %>%
       sort(decreasing = FALSE)
     
-    updateSelectizeInput(session = getDefaultReactiveDomain(), inputId = "period", choices = period_input_choices, selected = "")
+    if(input$tabs == "time_trend") {
+      updateSelectizeInput(session = getDefaultReactiveDomain(), inputId = "period", choices = "", selected = "")
+    } else {
+      updateSelectizeInput(session = getDefaultReactiveDomain(), inputId = "period", choices = period_input_choices, selected = "")
+    }
     
     # enable("period")
     # disable("age")
@@ -56,7 +94,11 @@ select_options_surver <- function(input, output, session) {
       .$age_group %>%
       unique
     
-    updateSelectizeInput(session = getDefaultReactiveDomain(), inputId = "age", choices = age_input_choices, selected = "")
+    if(input$tabs == "time_trend") {
+      updateSelectizeInput(session = getDefaultReactiveDomain(), inputId = "age", choices = "15+", selected = "15+")
+    } else {
+      updateSelectizeInput(session = getDefaultReactiveDomain(), inputId = "age", choices = age_input_choices, selected = "")
+    }
     
     # enable("age")
     # disable("sex")
@@ -76,7 +118,11 @@ select_options_surver <- function(input, output, session) {
       .$sex %>%
       unique
     
-    updateSelectizeInput(session = getDefaultReactiveDomain(), inputId = "sex", choices = sex_input_choices, selected = "")
+    if(input$tabs == "time_trend") {
+      updateSelectizeInput(session = getDefaultReactiveDomain(), inputId = "sex", choices = "both", selected = "both")
+    } else {
+      updateSelectizeInput(session = getDefaultReactiveDomain(), inputId = "sex", choices = sex_input_choices, selected = "")
+    }
     
     # enable("sex")
     

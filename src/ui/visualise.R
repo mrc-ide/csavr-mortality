@@ -6,7 +6,8 @@ visualise <- function() {
           column(2, uiOutput("country_option")),
           column(2, uiOutput("period_option")),
           column(2, uiOutput("age_option")),
-          column(2, uiOutput("sex_option"))
+          column(2, uiOutput("sex_option")),
+          textOutput("tab_id")
           # column(3, 
           #        selectInput("country", "Country:",
           #                    sort(unique(full_dat$area_name)),
@@ -36,8 +37,14 @@ visualise <- function() {
         # textOutput("period_result"),
         # textOutput("sex_result"),
         
-        tabsetPanel(
-          tabPanel(title = HTML("<b style='font-size:18px'>Sankey</b>"),
+        tabsetPanel(id="tabs",
+            tabPanel(title = HTML("<b style='font-size:18px'>Time trend</b>"),
+                     value="time_trend",
+                     plotOutput("time_trend_plot")
+                     
+            ),
+            tabPanel(title = HTML("<b style='font-size:18px'>Sankey</b>"),
+                     value="sankey",
                    # fluidRow(
                    #     shinyjs::hidden(div(style="display:flex; justify-content: space-around",
                    #      id = "titles",
@@ -58,6 +65,7 @@ visualise <- function() {
                    )
           ),
           tabPanel(title = HTML("<b style='font-size:18px'>Table</b>"),
+                   value = "table",
                    downloadButton("download_data_table", "Download data"),
                    DTOutput("links_sankey_df")
           )
