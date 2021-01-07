@@ -160,10 +160,23 @@ sankey_surver <- function(input, output, session) {
     time_trend_df() %>%
       group_by(period, flow) %>%
       summarise(deaths = sum(deaths)) %>%
-      ggplot(aes(x=period, y=deaths, group=flow, fill=flow)) +
+      ungroup %>%
+      mutate(flow = recode(flow, 
+                           "Correctly coded" = "Deaths coded as HIV/AIDS",
+                           "Garbage" = "Deaths coded as ‘garbage’ codes reallocated to HIV/AIDS",
+                           "Misclassification" = "Deaths coded as other causes reclassified to HIV/AIDS"),
+             flow = factor(flow, levels=c(
+               "Deaths coded as HIV/AIDS",
+               "Deaths coded as ‘garbage’ codes reallocated to HIV/AIDS",
+               "Deaths coded as other causes reclassified to HIV/AIDS"
+             ))
+            ) %>%
+      ggplot(aes(x=period, y=deaths, group=fct_rev(flow), fill=flow)) +
       geom_col() +
       theme_minimal() +
-      scale_fill_manual(values=c("Correctly coded" = "#3B9AB2", "Garbage" = "#E1AF00", "Misclassification" = "#F21A00")) +
+      scale_fill_manual(values=c("Deaths coded as HIV/AIDS" = "#3B9AB2",
+                                 "Deaths coded as ‘garbage’ codes reallocated to HIV/AIDS" = "#E1AF00",
+                                 "Deaths coded as other causes reclassified to HIV/AIDS" = "#F21A00")) +
       labs(y="AIDS deaths", x=element_blank(), fill = "Source of AIDS deaths") +
       theme(
         legend.position = "bottom",
