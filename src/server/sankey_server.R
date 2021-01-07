@@ -126,9 +126,6 @@ sankey_surver <- function(input, output, session) {
       )
   })
   
-  output$tab_id <- renderText(input$tabs)
-
-  
   cod_df <- reactive({
     
     req(sankey_inputs$links_dat)
