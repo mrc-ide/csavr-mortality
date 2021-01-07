@@ -1,6 +1,6 @@
 sankey_surver <- function(input, output, session) {
 
-  sankey_inputs <- reactiveValues()
+  sankey_inputs <<- reactiveValues()
 
   ##############################################################################
   ## Two step flow not being used, but keep commented for future use perhaps? ##
@@ -109,8 +109,7 @@ sankey_surver <- function(input, output, session) {
           select(node, val, target_node_id),
         by=c("target" = "node", "target_state" = "val")
       ) %>%
-      mutate(flow = ifelse(source == target, "Original", flow),
-             flow = factor(flow))
+      mutate(flow = factor(flow))
 
 
   })
@@ -130,7 +129,7 @@ sankey_surver <- function(input, output, session) {
              # Flow = factor(Flow, levels = c("-", "Garbage", "Misclassification"))
       ) %>%
       # filter(!(Flow == "Misclassification" & source == target)) %>% ## Required for the two flow setup
-      arrange(flow) %>%
+      arrange(desc(flow)) %>%
       rename("Origin COD" = source,
              "Reallocated COD" = target,
              Deaths = deaths,
@@ -143,7 +142,11 @@ sankey_surver <- function(input, output, session) {
 
   output$links_sankey_df <- renderDT({
 
-    req(sankey_inputs$links_dat)
+    # req(sankey_inputs$links_dat)
+    
+    validate(
+      need(sankey_inputs$links_dat, "Please select a country, year, age group, and sex")
+    )
 
     cod_df()
     
@@ -152,7 +155,11 @@ sankey_surver <- function(input, output, session) {
 
   output$sankey <- renderSankeyNetwork({
 
-    req(sankey_inputs$links_dat)
+    # req(sankey_inputs$links_dat)
+    
+    validate(
+      need(sankey_inputs$links_dat, "Please select a country, year, age group, and sex")
+    )
     
     my_color <- 'd3.scaleOrdinal() .domain(["Original", "Garbage", "Misclassification", "1"]) .range(["#3B9AB2", "#E1AF00", "#F21A00", "lightgrey"])'
 

@@ -49,9 +49,9 @@ visualise <- function() {
                        br(),
                        p(
                            tags$b(
-                               "Correctly coded HIV/AIDS deaths are in" , tags$span(style="color: #3B9AB2", "blue. "),
-                               "Reallocated garbage codes are in ", tags$span(style="color: #E1AF00", "yellow. "),
-                               "Misclassified HIV/AIDS deaths are in ", tags$span(style="color: #F21A00", " red.")
+                               "Deaths coded as HIV/AIDS are " , tags$span(style="color: #3B9AB2", "blue. "),
+                               "Deaths coded as garbage codes reallocated to HIV/AIDS are ", tags$span(style="color: #E1AF00", "yellow. "),
+                               "Deaths coded as other causes reclassified to HIV/AIDS are ", tags$span(style="color: #F21A00", " red.")
                            )
                          ),
                           sankeyNetworkOutput("sankey")

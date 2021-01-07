@@ -1,13 +1,10 @@
 methods_server <- function(input, output, session) {
   
   citations <<- read.csv("citations.csv")
-  
-  `%then%` <- shiny:::`%OR%`
 
   output$info <- renderText({
     
     validate(
-      need(input$country, "Please select a country and year") %then%
       need(input$period, "Please select a country and year")
     )
     

@@ -24,6 +24,9 @@ select_options_surver <- function(input, output, session) {
   
   observeEvent(input$country, {
     
+    sankey_inputs$links_dat <- NULL
+    sankey_inputs$node_df <- NULL
+    
     period_input_choices <- full_dat %>%
       select(area_name, period) %>%
       filter(area_name == input$country) %>%
@@ -42,6 +45,9 @@ select_options_surver <- function(input, output, session) {
   
   observeEvent(input$period, {
     
+    sankey_inputs$links_dat <- NULL
+    sankey_inputs$node_df <- NULL
+    
     age_input_choices <- full_dat %>%
       select(area_name, period, age_group_sort_order, age_group) %>%
       filter(area_name == input$country,
@@ -59,6 +65,8 @@ select_options_surver <- function(input, output, session) {
   
   observeEvent(input$age, {
     
+    sankey_inputs$links_dat <- NULL
+    sankey_inputs$node_df <- NULL
     
     sex_input_choices <- full_dat %>%
       select(area_name, period, age_group_sort_order, age_group, sex) %>%
