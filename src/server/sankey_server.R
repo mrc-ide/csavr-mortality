@@ -144,7 +144,7 @@ sankey_surver <- function(input, output, session) {
              # Flow = factor(Flow, levels = c("-", "Garbage", "Misclassification"))
       ) %>%
       # filter(!(Flow == "Misclassification" & source == target)) %>% ## Required for the two flow setup
-      arrange(desc(flow)) %>%
+      arrange(flow) %>%
       rename("Origin COD" = source,
              "Reallocated COD" = target,
              Deaths = deaths,

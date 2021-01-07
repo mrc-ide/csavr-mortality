@@ -40,7 +40,9 @@ visualise <- function() {
         tabsetPanel(id="tabs",
             tabPanel(title = HTML("<b style='font-size:18px'>Time trend</b>"),
                      value="time_trend",
-                     plotOutput("time_trend_plot")
+                     br(),
+                     br(),
+                     plotOutput("time_trend_plot", width = "80%")
                      
             ),
             tabPanel(title = HTML("<b style='font-size:18px'>Sankey</b>"),
