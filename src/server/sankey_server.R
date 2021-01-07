@@ -163,6 +163,7 @@ sankey_surver <- function(input, output, session) {
       ggplot(aes(x=period, y=deaths, group=flow, fill=flow)) +
       geom_col() +
       theme_minimal() +
+      scale_fill_manual(values=c("Correctly coded" = "#3B9AB2", "Garbage" = "#E1AF00", "Misclassification" = "#F21A00")) +
       labs(y="AIDS deaths", x=element_blank(), fill = "Source of AIDS deaths") +
       theme(
         legend.position = "bottom",
