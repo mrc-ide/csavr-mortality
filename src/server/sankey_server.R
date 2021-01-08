@@ -1,7 +1,11 @@
 sankey_surver <- function(input, output, session) {
 
   sankey_inputs <<- reactiveValues()
+  time_trend <- reactiveValues()
   tab_watcher <<- "time_trend"
+  
+  full_dat <<- readRDS("single_flow_testing_dat.rds")
+  gbd19 <- read_csv("gbd19_hiv_deaths.csv")
 
   ##############################################################################
   ## Two step flow not being used, but keep commented for future use perhaps? ##
@@ -114,16 +118,20 @@ sankey_surver <- function(input, output, session) {
   })
   
   
-  time_trend_df <- reactive({
+  observe({
     
     req(input$tabs == "time_trend",
         input$country)
     
-    full_dat %>%
+    time_trend$data <- full_dat %>%
       filter(area_name == input$country,
              age_group == "15+",
              sex == "both"
       )
+    
+    time_trend$gbd19 <- gbd19 %>%
+      filter(area_name == input$country)
+    
   })
   
   cod_df <- reactive({
@@ -154,10 +162,10 @@ sankey_surver <- function(input, output, session) {
   output$time_trend_plot <- renderPlot({
     
     validate(
-      need(time_trend_df, "Please select a country")
+      need(time_trend$data, "Please select a country")
     )
     
-    time_trend_df() %>%
+    time_trend$data %>%
       group_by(period, flow) %>%
       summarise(deaths = sum(deaths)) %>%
       ungroup %>%
@@ -171,13 +179,16 @@ sankey_surver <- function(input, output, session) {
                "Deaths coded as other causes reclassified to HIV/AIDS"
              ))
             ) %>%
-      ggplot(aes(x=period, y=deaths, group=fct_rev(flow), fill=flow)) +
-      geom_col() +
+      ggplot(aes(x=period, y=deaths)) +
+      geom_col(aes(group=fct_rev(flow), fill=flow)) +
+      geom_point(data = time_trend$gbd19, aes(color=source), size=1.2) +
+      geom_line(data = time_trend$gbd19, aes(color=source), size=1) +
       theme_minimal() +
       scale_fill_manual(values=c("Deaths coded as HIV/AIDS" = "#3B9AB2",
                                  "Deaths coded as ‘garbage’ codes reallocated to HIV/AIDS" = "#E1AF00",
                                  "Deaths coded as other causes reclassified to HIV/AIDS" = "#F21A00")) +
-      labs(y="AIDS deaths", x=element_blank(), fill = "Source of AIDS deaths") +
+      scale_color_manual(values = c("AIDS deaths" = "#000000")) +
+      labs(y="AIDS deaths", x=element_blank(), fill = "Source of AIDS deaths", color = "GBD2019") +
       theme(
         legend.position = "bottom",
         text = element_text(size=14),
