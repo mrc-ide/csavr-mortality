@@ -1,7 +1,9 @@
 methods_server <- function(input, output, session) {
   
   citations <<- read.csv("citations.csv")
-
+  group <- read.csv("ihme_mortality_group.csv")
+  
+  
   output$info <- renderText({
     
     validate(
@@ -19,6 +21,32 @@ methods_server <- function(input, output, session) {
     )
   })
   
+  output$group <- renderText({
+    
+    req(input$country)
+    
+    req(as.logical(nrow(filter(group, area_name == input$country))))
+    
+    paste0(
+      "Mortality Group ",
+      filter(group, area_name == input$country)$group
+    )
+    
+  })
+  
+  output$group_explanation <- renderText({
+    
+    req(input$country)
+    
+    paste0(
+      input$country, 
+      " is in IHME Mortality Group ",
+      filter(group, area_name == input$country)$group,
+      ". ",
+      filter(group, area_name == input$country)$group_explanation
+    )
+    
+  })
   
   
 }

@@ -25,6 +25,8 @@ methods <- function() {
         tags$li("Compute the difference between observed and expected deaths and reallocate the difference to HIV/AIDS.")
       ),
       # img(width="100%", src="global_reallocation.png"),
+      h3("Mortality group"),
+      textOutput("group_explanation"),
       h3("Data sources"),
       textOutput("info"),
       br(),
