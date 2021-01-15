@@ -36,7 +36,9 @@ methods_server <- function(input, output, session) {
   
   output$group_explanation <- renderText({
     
-    req(input$country)
+    validate(
+      need(input$country, "Please select a country")
+    )
     
     paste0(
       input$country, 
