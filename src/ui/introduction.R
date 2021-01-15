@@ -1,6 +1,6 @@
 introduction <- function() {
   div(style="margin-left:10%; margin-right: 40%; text-align: justify",
-      h2("AIDS Cause of Death reallocation visualiser"),
+      h2(style="text-align: left", "AIDS Cause of Death reallocation visualiser"),
       br(),
       p("This tool visualises HIV/AIDS deaths recorded in national vital registration systems, including reallocation of deaths to HIV/AIDS that were initially classified as unknown causes or misclassified as other causes. Estimates of AIDS deaths adjusted for misclassification are produced for the Global Burden of Disease Study by the Institute for Health Metrics and Evaluation."),
       p("Vital registration systems use the International Classification of Diseases (ICD) system to facilitate systematic recording of mortality data. Misclassification of AIDS deaths, however, is common: deaths can be incorrectly recorded as an immediate cause of death (e.g. respiratory failure, cardiac arrest), or an intermediate cause of death (e.g. sepsis, heart failure)."),
