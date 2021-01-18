@@ -166,6 +166,8 @@ sankey_surver <- function(input, output, session) {
       need(time_trend$data, "Please select a country")
     )
     
+    shinyjs::show("gbd_text")
+    
     time_trend$data %>%
       group_by(period, flow) %>%
       summarise(deaths = sum(deaths)) %>%

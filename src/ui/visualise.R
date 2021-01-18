@@ -14,7 +14,9 @@ visualise <- function() {
                      value="time_trend",
                      br(),
                      br(),
-                     plotOutput("time_trend_plot", width = "80%")
+                     plotOutput("time_trend_plot", width = "80%"),
+                     br(),
+                     hidden(p(id="gbd_text", style="color: #686868", "GBD2019 AIDS death estimates use mortality data up to 2016, and may not align with mortality estimates beyond 2016. GBD2020 AIDS death estimates will be added to this tool when publicly available."))
                      
             ),
             tabPanel(title = HTML("<b style='font-size:18px'>Sankey</b>"),
