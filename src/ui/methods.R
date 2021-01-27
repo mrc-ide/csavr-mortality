@@ -3,7 +3,7 @@ methods <- function() {
       h2("Methods and sources"),
       br(),
       h3("Methods"),
-      p("Data about the number of HIV/AIDS deaths corrected for unknown and misclassified causes of death are estimated as part of the Global Burden of Disease Study produced by the Institute of Health Metrics and Evaluation. Methods for estimating AIDS deaths include cause of death reallocation are described in <Hmwe's paper, other citations> and summarised below."),
+      p("Data about the number of HIV/AIDS deaths corrected for unknown and misclassified causes of death are estimated as part of the Global Burden of Disease Study produced by the Institute of Health Metrics and Evaluation. Methods for estimating AIDS deaths include cause of death reallocation are described in Kyu et al. (2021, in press) and summarised below."),
       p("Deaths recorded in vital registration may be assigned immediate, contributing, and underlying causes of death classified according to the International Classification of Diseases (ICD) system. Most deaths for which HIV/AIDS was the underlying cause are correctly attributed to HIV/AIDS at the time of death. The cause of death reclassification process involves reassigning some deaths that were probably due to HIV/AIDS but for which AIDS was not recorded as the cause at the time of death."),
       p("This involves reclassification of deaths from two sources: (1) Deaths for which the immediate, intermediate, or ill-defined causes are incorrectly recorded as the underlying cause of death. These are often referred to as 'garbage' codes. (2) HIV/AIDS deaths for which the underlying cause was misclassified as a different cause of death."),
       h4("Garbage code correction"),
@@ -32,6 +32,7 @@ methods <- function() {
       br(),
       br(),
       h4("Citations"),
-      p("<Some citations here>")
+      p("Wang et al. (2016) Global, regional, and national life expectancy, all-cause mortality, and cause-specific mortality for 249 causes of death, 1980–2015: a systematic analysis for the Global Burden of Disease Study 2015"), 
+      p("Birnbaun et al. (2011) Exposing misclassified HIV/AIDS deaths in South Africa")
   )
 }
