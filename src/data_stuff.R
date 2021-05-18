@@ -1,7 +1,10 @@
 group <- read.csv("src/ihme_mortality_group.csv")
 group <- group %>%
-  filter(area_name != "U.S. Virgin Isl") %>%
-  mutate(iso3 = countrycode(area_name, "country.name", "iso3c"))
+  filter(location_name != "U.S. Virgin Isl") %>%
+  mutate(iso3 = countrycode(location_name, "country.name", "iso3c"),
+         area_name = countrycode(iso3, "iso3c", "country.name"),
+         group = factor(group, levels=c("1A", "2A", "2B", "2C"))) %>%
+  select(-location_name)
 
 ###############################################
 #### DATA MANIPULATION FOR TWO STAGE FLOW #####
@@ -311,7 +314,7 @@ foo <- read_csv("src/citations.csv")
 
 ######################
 
-gbd_19 <- read_csv("~/Downloads/IHME-GBD_2019_DATA-420db19e-1/IHME-GBD_2019_DATA-420db19e-1.csv")
+gbd_19 <- readr::read_csv("~/Downloads/IHME-GBD_2019_DATA-420db19e-1/IHME-GBD_2019_DATA-420db19e-1.csv")
 
 df <- gbd_19 %>%
   group_by(location_name, year) %>%
@@ -325,4 +328,260 @@ df <- gbd_19 %>%
   rename(period = year)
 
 write_csv(df, "src/gbd19_hiv_deaths.csv")
-  
+
+
+latam_iso3 <- countrycode(c("Antigua and Barbuda",
+"Argentina",
+"Bahamas",
+"Barbados",
+"Belize",
+"Bolivia",
+"Brazil",
+"Chile",
+"Colombia",
+"Costa Rica",
+"Cuba",
+"Dominica",
+"Dominican Republic",
+"Ecuador",
+"El Salvador",
+"Grenada",
+"Guatemala",
+"Guyana",
+"Haiti",
+"Honduras",
+"Jamaica",
+"Mexico",
+"Nicaragua",
+"Panama",
+"Paraguay",
+"Peru",
+"Saint Kitts and Nevis",
+"Saint Lucia",
+"Saint Vincent and the Grenadines",
+"Suriname",
+"Trinidad and Tobago",
+"Uruguay",
+"Venezuela"), "country.name", "iso3c")
+
+eeca_iso3 <- countrycode(c("Albania",
+"Armenia",
+"Azerbaijan",
+"Belarus",
+"Bosnia and Herzegovina",
+"Georgia",
+"Kazakhstan",
+"Kyrgyzstan",
+"Montenegro",
+"Republic of Moldova",
+"Russian Federation",
+"Tajikistan",
+"The Former Yugoslav Republic of Macedonia",
+"Turkmenistan",
+"Ukraine",
+"Uzbekistan"), "country.name", "iso3c")
+
+mena_iso3 <- countrycode(c("Algeria", 
+"Bahrain", 
+"Djibouti", 
+"Egypt", 
+"Iraq", 
+"Islamic Republic of Iran", 
+"Jordan", 
+"Kuwait", 
+"Lebanon", 
+"Libya", 
+"Morocco", 
+"Oman", 
+"Qatar", 
+"Saudi Arabia", 
+"Somalia", 
+"Sudan", 
+"Syrian Arab Republic", 
+"Tunisia", 
+"United Arab Emirates", 
+"Yemen"), "country.name", "iso3c")
+
+wcena_iso3 <- countrycode(c("Canada", 
+"Croatia", 
+"Cyprus", 
+"Czechia", 
+"Denmark", 
+"Estonia", 
+"Finland", 
+"France", 
+"Germany", 
+"Greece", 
+"Hungary", 
+"Iceland", 
+"Ireland", 
+"Israel", 
+"Italy", 
+"Latvia", 
+"Lithuania", 
+"Luxembourg", 
+"Netherlands", 
+"Norway", 
+"Poland", 
+"Portugal", 
+"Romania", 
+"Serbia", 
+"Slovakia", 
+"Slovenia", 
+"Spain", 
+"Sweden", 
+"Switzerland", 
+"Turkey", 
+"United Kingdom of Great Britain and Northern Ireland", 
+"United States of America"), "country.name", "iso3c")
+
+
+ap_iso3 <- countrycode(c("Afghanistan",
+"Australia",
+"Bangladesh",
+"Bhutan",
+"Brunei Darussalam",
+"Cambodia",
+"China",
+"Democratic People's Republic of Korea",
+"Federated States of Micronesia",
+"Fiji",
+"India",
+"Indonesia",
+"Japan",
+"Kiribati",
+"Lao People's Democratic Republic",
+"Malaysia",
+"Maldives",
+"Marshall Islands",
+"Mongolia",
+"Myanmar",
+"Nauru",
+"Nepal",
+"New Zealand",
+"Pakistan",
+"Palau",
+"Papua New Guinea",
+"Philippines",
+"Republic of Korea",
+"Samoa",
+"Singapore",
+"Solomon Islands",
+"Sri Lanka",
+"Thailand",
+"Timor-Leste",
+"Tonga",
+"Tuvalu",
+"Vanuatu",
+"Viet Nam"), "country.name", "iso3c")
+
+plot_dat <- df %>%
+  rename(gbd19 = deaths) %>%
+  select(-source) %>%
+  left_join(group) %>%
+  mutate(area_name = paste0(area_name, " (", group, ")"))  %>%
+  ungroup()
+
+cod <- full_dat %>%
+  filter(sex == "both", age_group== "15+") %>%
+  group_by(iso3, area_name, period, flow) %>%
+  summarise(cod = sum(deaths)) %>%
+  left_join(group) %>%
+  mutate(area_name = paste0(area_name, " (", group, ")"))  %>%
+  ungroup()
+
+# plot_dat <- full_dat %>%
+#   filter(sex == "both", age_group== "15+", period>2010) %>%
+#   group_by(iso3, area_name, period) %>%
+#   summarise(cod = sum(deaths)) %>%
+#   left_join(
+#     df %>%
+#       rename(gbd19 = deaths) %>%
+#       select(-source)
+#   ) %>%
+#   left_join(group) %>%
+#   mutate(gbd_to_cod = gbd19/cod,
+#          area_name = paste0(area_name, " (", group, ")")
+#          # area_name = factor(area_name),
+#          # area_name = fct_reorder(area_name, as.numeric(group))
+#   ) 
+
+plot_dat %>%
+  filter(iso3 %in% wcena_iso3) %>%
+  ggplot(aes(x=period, y=gbd19)) +
+  geom_col(data = cod %>% filter(iso3 %in% wcena_iso3), aes(y=cod, fill=fct_rev(flow)), size=1) +
+  geom_line(size=1) +
+  # geom_hline(aes(yintercept = 1), linetype=3) +
+  facet_wrap(~area_name, scales="free", ncol=5) +
+  labs(x=element_blank(), y="Deaths", fill="Cause of death") +
+  scale_fill_manual(values = wesanderson::wes_palette("Zissou1")[c(5,3,1)]) +
+  theme_minimal() +
+  theme(
+    text = element_text(size=14),
+    legend.position = "bottom"
+  )
+
+plot_dat %>%
+  filter(iso3 %in% latam_iso3, cod > 50, group != "1A") %>%
+  ggplot(aes(x=period, y=gbd_to_cod, color=group)) +
+    geom_line(size=0.8) +
+    geom_hline(aes(yintercept = 1), linetype=3) +
+    facet_wrap(~area_name) +
+    labs(x=element_blank(), y="GBD19 deaths:death data ratio") +
+    scale_color_manual(values = wesanderson::wes_palette("Darjeeling1")[c(2,4)]) +
+    theme_minimal() +
+    theme(
+      text = element_text(size=14)
+    )
+
+plot_dat %>%
+  filter(cod > 50, group != "1A", iso3 %in% eeca_iso3, period>2010, !iso3 %in% c("BLR", "UKR", "TJK")) %>%
+  ggplot(aes(x=period, y=gbd_to_cod, color=group)) +
+    geom_line(size=0.8) +
+    geom_hline(aes(yintercept = 1), linetype=3) +
+    facet_wrap(~area_name) +
+    labs(x=element_blank(), y="GBD19 deaths:death data ratio") +
+    scale_color_manual(values = wesanderson::wes_palette("Darjeeling1")[c(2)]) +
+    theme_minimal() +
+      theme(
+        text = element_text(size=14)
+      )
+
+plot_dat %>%
+  filter(iso3 %in% wcena_iso3, iso3 != "USA", cod > 50, group != "1A") %>%
+  ggplot(aes(x=period, y=gbd_to_cod, color=group)) +
+  geom_line(size=0.8) +
+  geom_hline(aes(yintercept = 1), linetype=3) +
+  facet_wrap(~area_name) +
+  labs(x=element_blank(), y="GBD19 deaths:death data ratio") +
+  scale_color_manual(values = wesanderson::wes_palette("Darjeeling1")[c(2,4)]) +
+  theme_minimal() +
+    theme(
+      text = element_text(size=14)
+    )
+
+plot_dat %>%
+  filter(iso3 %in% mena_iso3,  group != "1A", !iso3 %in% c("LBN", "TUN")) %>%
+  ggplot(aes(x=period, y=gbd_to_cod, color=group)) +
+  geom_line(size=0.8) +
+  geom_hline(aes(yintercept = 1), linetype=3) +
+  facet_wrap(~area_name) +
+  labs(x=element_blank(), y="GBD19 deaths:death data ratio") +
+  scale_color_manual(values = wesanderson::wes_palette("Darjeeling1")[c(2, 4,5)]) +
+  theme_minimal() +
+    theme(
+      text = element_text(size=14)
+    )
+
+plot_dat %>%
+  filter(iso3 %in% ap_iso3, !iso3 %in% c("IND", "CHN", "SGP", "SLB", "BRN", "MNG", "PLW"), group != "1A") %>%
+  ggplot(aes(x=period, y=gbd_to_cod, color=group)) +
+  geom_line(size=0.8) +
+  geom_hline(aes(yintercept = 1), linetype=3) +
+  facet_wrap(~area_name) +
+  labs(x=element_blank(), y="GBD19 deaths:death data ratio") +
+  scale_color_manual(values = wesanderson::wes_palette("Darjeeling1")[c(2,4, 5)]) +
+  theme_minimal() +
+    theme(
+      text = element_text(size=14)
+    )

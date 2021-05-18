@@ -1,88 +1,205 @@
-﻿area_name,group,group_explanation
-Albania,2B,Some dummy text for group 2B
-Cambodia,2B,Some dummy text for group 2B
-Honduras,2B,Some dummy text for group 2B
-Nicaragua,2B,Some dummy text for group 2B
-Sri Lanka,2B,Some dummy text for group 2B
-Algeria,2B,Some dummy text for group 2B
-China,2B,Some dummy text for group 2B
-Iran,2B,Some dummy text for group 2B
-Northern Mariana Isl,2B,Some dummy text for group 2B
-Suriname,2B,Some dummy text for group 2B
-American Samoa,2B,Some dummy text for group 2B
-Cyprus,2B,Some dummy text for group 2B
-Iraq,2B,Some dummy text for group 2B
-Oman,2B,Some dummy text for group 2B
-Syria,2B,Some dummy text for group 2B
-Armenia,2B,Some dummy text for group 2B
-Dominica,2B,Some dummy text for group 2B
-Jamaica,2B,Some dummy text for group 2B
-Palestine,2B,Some dummy text for group 2B
-Taiwan,2B,Some dummy text for group 2B
-Azerbaijan,2B,Some dummy text for group 2B
-Ecuador,2B,Some dummy text for group 2B
-Jordan,2B,Some dummy text for group 2B
-Panama,2B,Some dummy text for group 2B
-Tajikistan,2B,Some dummy text for group 2B
-Bahamas,2B,Some dummy text for group 2B
-Egypt,2B,Some dummy text for group 2B
-Kiribati,2B,Some dummy text for group 2B
-Paraguay,2B,Some dummy text for group 2B
-Thailand,2B,Some dummy text for group 2B
-Bahrain,2B,Some dummy text for group 2B
-El Salvador,2B,Some dummy text for group 2B
-Kyrgyzstan,2B,Some dummy text for group 2B
-Peru,2B,Some dummy text for group 2B
-Tonga,2B,Some dummy text for group 2B
-Belarus,2B,Some dummy text for group 2B
-Fiji,2B,Some dummy text for group 2B
-Malaysia,2B,Some dummy text for group 2B
-Qatar,2B,Some dummy text for group 2B
-Tunisia,2B,Some dummy text for group 2B
-Belize,2B,Some dummy text for group 2B
-FYR Macedonia,2B,Some dummy text for group 2B
-Maldives,2B,Some dummy text for group 2B
-Sao Tome and Principe,2B,Some dummy text for group 2B
-Turkey,2B,Some dummy text for group 2B
-Bolivia,2B,Some dummy text for group 2B
-Georgia,2B,Some dummy text for group 2B
-Mongolia,2B,Some dummy text for group 2B
-Saudi Arabia,2B,Some dummy text for group 2B
-Turkmenistan,2B,Some dummy text for group 2B
-Bosnia and Herzegovina,2B,Some dummy text for group 2B
-Greenland,2B,Some dummy text for group 2B
-Montenegro,2B,Some dummy text for group 2B
-Serbia,2B,Some dummy text for group 2B
-U.S. Virgin Isl,2B,Some dummy text for group 2B
-Brazil,2B,Some dummy text for group 2B
-Guam,2B,Some dummy text for group 2B
-Morocco,2B,Some dummy text for group 2B
-Seychelles,2B,Some dummy text for group 2B
-Uzbekistan,2B,Some dummy text for group 2B
-Brunei,2B,Some dummy text for group 2B
-Guyana,2B,Some dummy text for group 2B
-Myanmar,2B,Some dummy text for group 2B
-Slovakia,2B,Some dummy text for group 2B
-Afghanistan,2C,Some dummy text for group 2C
-Indonesia,2C,Some dummy text for group 2C
-Mauritania,2C,Some dummy text for group 2C
-Timor-Leste,2C,Some dummy text for group 2C
-Andorra,2C,Some dummy text for group 2C
-Laos,2C,Some dummy text for group 2C
-Nepal,2C,Some dummy text for group 2C
-United Arab Emirates,2C,Some dummy text for group 2C
-Bangladesh,2C,Some dummy text for group 2C
-Lebanon,2C,Some dummy text for group 2C
-North Korea,2C,Some dummy text for group 2C
-Vanuatu,2C,Some dummy text for group 2C
-Bhutan,2C,Some dummy text for group 2C
-Libya,2C,Some dummy text for group 2C
-Pakistan,2C,Some dummy text for group 2C
-Vietnam,2C,Some dummy text for group 2C
-Comoros,2C,Some dummy text for group 2C
-Madagascar,2C,Some dummy text for group 2C
-Samoa,2C,Some dummy text for group 2C
-Yemen,2C,Some dummy text for group 2C
-Federated States of Micronesia,2C,Some dummy text for group 2C
-Marshall Islands,2C,Some dummy text for group 2C
-Solomon Islands ,2C,Some dummy text for group 2C
+iso3,location_name,group
+CHN,China,2B
+PRK,Democratic People's Republic of Korea,2C
+TWN,Taiwan (Province of China),2A
+KHM,Cambodia,1A
+IDN,Indonesia,2B
+LAO,Lao People's Democratic Republic,2C
+MYS,Malaysia,2B
+MDV,Maldives,2B
+MMR,Myanmar,1A
+PHL,Philippines,2A
+LKA,Sri Lanka,2B
+THA,Thailand,2B
+TLS,Timor-Leste,2C
+VNM,Viet Nam,2B
+FJI,Fiji,2B
+KIR,Kiribati,2B
+MHL,Marshall Islands,2C
+FSM,Micronesia (Federated States of),2C
+PNG,Papua New Guinea,1A
+WSM,Samoa,2C
+SLB,Solomon Islands,2C
+TON,Tonga,2B
+VUT,Vanuatu,2C
+ARM,Armenia,2A
+AZE,Azerbaijan,2B
+GEO,Georgia,2A
+KAZ,Kazakhstan,2A
+KGZ,Kyrgyzstan,2A
+MNG,Mongolia,2B
+TJK,Tajikistan,2B
+TKM,Turkmenistan,2A
+UZB,Uzbekistan,2A
+ALB,Albania,2B
+BIH,Bosnia and Herzegovina,2B
+BGR,Bulgaria,2A
+HRV,Croatia,2A
+CZE,Czechia,2A
+HUN,Hungary,2A
+MKD,North Macedonia,2B
+MNE,Montenegro,2B
+POL,Poland,2A
+ROU,Romania,2A
+SRB,Serbia,2B
+SVK,Slovakia,2B
+SVN,Slovenia,2A
+BLR,Belarus,2A
+EST,Estonia,2A
+LVA,Latvia,2A
+LTU,Lithuania,2A
+MDA,Republic of Moldova,2A
+RUS,Russian Federation,2A
+UKR,Ukraine,2A
+BRN,Brunei Darussalam,2B
+JPN,Japan,2A
+KOR,Republic of Korea,2A
+SGP,Singapore,2A
+AUS,Australia,2A
+NZL,New Zealand,2A
+AND,Andorra,2C
+AUT,Austria,2A
+BEL,Belgium,2A
+CYP,Cyprus,2B
+DNK,Denmark,2A
+FIN,Finland,2A
+FRA,France,2A
+DEU,Germany,2A
+GRC,Greece,2A
+ISL,Iceland,2A
+IRL,Ireland,2A
+ISR,Israel,2A
+ITA,Italy,2A
+LUX,Luxembourg,2A
+MLT,Malta,2A
+NLD,Netherlands,2A
+NOR,Norway,2A
+PRT,Portugal,2A
+ESP,Spain,2A
+SWE,Sweden,2A
+CHE,Switzerland,2A
+GBR,United Kingdom,2A
+ARG,Argentina,2A
+CHL,Chile,2A
+URY,Uruguay,2A
+CAN,Canada,2A
+USA,United States of America,2A
+ATG,Antigua and Barbuda,2A
+BHS,Bahamas,2A
+BRB,Barbados,2A
+BLZ,Belize,2A
+CUB,Cuba,2A
+DMA,Dominica,2A
+DOM,Dominican Republic,1A
+GRD,Grenada,2A
+GUY,Guyana,2A
+HTI,Haiti,1A
+JAM,Jamaica,2A
+LCA,Saint Lucia,2A
+VCT,Saint Vincent and the Grenadines,2A
+SUR,Suriname,2A
+TTO,Trinidad and Tobago,2A
+BOL,Bolivia (Plurinational State of),2C
+ECU,Ecuador,2A
+PER,Peru,2B
+COL,Colombia,2A
+CRI,Costa Rica,2A
+SLV,El Salvador,2B
+GTM,Guatemala,2A
+HND,Honduras,2B
+MEX,Mexico,2A
+NIC,Nicaragua,2B
+PAN,Panama,2A
+VEN,Venezuela (Bolivarian Republic of),2A
+BRA,Brazil,2A
+PRY,Paraguay,2B
+DZA,Algeria,2C
+BHR,Bahrain,2B
+EGY,Egypt,2B
+IRN,Iran (Islamic Republic of),2B
+IRQ,Iraq,2B
+JOR,Jordan,2B
+KWT,Kuwait,2A
+LBN,Lebanon,2C
+LBY,Libya,2C
+MAR,Morocco,2C
+PSE,Palestine,2B
+OMN,Oman,2B
+QAT,Qatar,2B
+SAU,Saudi Arabia,2B
+SYR,Syrian Arab Republic,2B
+TUN,Tunisia,2C
+TUR,Turkey,2B
+ARE,United Arab Emirates,2C
+YEM,Yemen,2C
+AFG,Afghanistan,2C
+BGD,Bangladesh,2C
+BTN,Bhutan,2C
+IND,India,1B
+NPL,Nepal,2C
+PAK,Pakistan,2C
+AGO,Angola,1A
+CAF,Central African Republic,1A
+COG,Congo,1A
+COD,Democratic Republic of the Congo,1A
+GNQ,Equatorial Guinea,1A
+GAB,Gabon,1A
+BDI,Burundi,1A
+COM,Comoros,2C
+DJI,Djibouti,1A
+ERI,Eritrea,1A
+ETH,Ethiopia,1A
+KEN,Kenya,1A
+MDG,Madagascar,1A
+MWI,Malawi,1A
+MUS,Mauritius,2A
+MOZ,Mozambique,1A
+RWA,Rwanda,1A
+SYC,Seychelles,2B
+SOM,Somalia,1B
+TZA,United Republic of Tanzania,1A
+UGA,Uganda,1A
+ZMB,Zambia,1A
+BWA,Botswana,1A
+LSO,Lesotho,1A
+NAM,Namibia,1A
+ZAF,South Africa,1A
+SWZ,Eswatini,1A
+ZWE,Zimbabwe,1A
+BEN,Benin,1A
+BFA,Burkina Faso,1A
+CMR,Cameroon,1A
+CPV,Cabo Verde,1A
+TCD,Chad,1A
+CIV,Cote d'Ivoire,1A
+GMB,Gambia,1A
+GHA,Ghana,1A
+GIN,Guinea,1A
+GNB,Guinea-Bissau,1A
+LBR,Liberia,1A
+MLI,Mali,1A
+MRT,Mauritania,2C
+NER,Niger,1A
+NGA,Nigeria,1A
+STP,Sao Tome and Principe,2B
+SEN,Senegal,1A
+SLE,Sierra Leone,1A
+TGO,Togo,1A
+ASM,American Samoa,2B
+BMU,Bermuda,2A
+COK,Cook Islands,2C
+GRL,Greenland,2B
+GUM,Guam,2B
+MCO,Monaco,2C
+NRU,Nauru,2C
+NIU,Niue,2C
+MNP,Northern Mariana Islands,2B
+PLW,Palau,2C
+PRI,Puerto Rico,2A
+KNA,Saint Kitts and Nevis,2C
+SMR,San Marino,2C
+TKL,Tokelau,2C
+TUV,Tuvalu,2C
+VIR,United States Virgin Islands,2A
+SSD,South Sudan,1A
+SDN,Sudan,1B
