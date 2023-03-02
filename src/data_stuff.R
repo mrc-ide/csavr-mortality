@@ -123,7 +123,7 @@ group <- group %>%
 
 ##################################
 
-raw_hiv <- read.csv("~/Downloads/cod_raw.csv")
+raw_hiv <- read.csv("~/Imperial College London/HIV Inference Group - WP - Documents/Data/ihme/cod/cod_raw.csv")
 
 raw_hiv <- raw_hiv %>%
   mutate(age_group = str_replace(age_group_name, " to ", "-")) %>%
@@ -165,7 +165,7 @@ garbage <- read.csv("~/Dropbox/oli backup/clean_hiv_redistribution_data.csv") %>
 garbage <- raw_hiv %>%
   bind_rows(garbage)
 
-misclassification <- read.csv("~/Downloads/clean_hiv_correction_results.csv")
+misclassification <- read.csv("~/Imperial College London/HIV Inference Group - WP - Documents/Data/ihme/cod/clean_hiv_correction_results.csv")
 location <- read.csv("src/area_hierarchy.csv")
 full_names <- read.csv("src/shorthand_to_full_cause_names.csv")
 
@@ -228,20 +228,67 @@ full_dat <- full_dat %>%
   mutate(flow = ifelse(str_detect(source, "HIV correction"), "Misclassification", flow))
 
 df <- full_dat %>%
-  filter(deaths > 0.5) %>%
-  mutate(deaths = round(deaths, 1)) %>%
+  # filter(deaths > 0.5) %>%
+  # mutate(deaths = round(deaths, 1)) %>%
   left_join(naomi::get_age_groups() %>% select(age_group_label, age_group_sort_order), by=c("age_group" = "age_group_label")) %>%
   mutate(age_group_sort_order = ifelse(is.na(age_group_sort_order), 29, as.numeric(age_group_sort_order))) %>%
   group_by(iso3, area_name, period, sex, age_group_sort_order, flow, source_state, source, target, target_state) %>%
   summarise(deaths = sum(deaths)) %>%
   ungroup %>%
   left_join(naomi::get_age_groups() %>% select(age_group_label, age_group_sort_order)) %>%
-  rename(age_group = age_group_label)
+  rename(age_group = age_group_label) %>%
+  filter(iso3 != "BOL")
 
 saveRDS(df, "src/single_flow_testing_dat.rds")
 
 full_dat <- readRDS("src/single_flow_testing_dat.rds")
 
+### 2022 estimtes update
+#' Only the time trend data has been updated with GBD 2020 data
+#' Sankey data will remain GBD 2019. 
+#' Introduce a new data file for the time trend plot only. 
+
+gbd_2020_dat <- read_csv("~/Imperial College London/HIV Inference Group - WP - Documents/Data/ihme/cod/2022 estimates/clean_cause_level_phase_death_counts_v2.csv")
+
+gbd_2020_dat_v1 <- gbd_2020_dat %>%
+  mutate(age_group = str_replace(age_group_name, " to ", "-")) %>%
+  rename(period = year_id) %>%
+  separate(ihme_loc_id, into=c("iso3", "extra"), sep=3) %>%
+  filter(str_detect(age_group, "-"),
+         !str_detect(age_group, "months"),
+         !age_group %in% c("2-4", "5-9", "10-14")
+  ) %>%
+  group_by(iso3, period, cause_name) %>%
+  summarise(deaths = sum(deaths_after_redistribution)) %>%
+  ungroup %>%
+  mutate(area_name = countrycode(iso3, "iso3c", "country.name")) 
+
+gbd_2020_dat_v1 %>%
+  filter(iso3 == "ARG") %>%
+  ggplot(aes(x=period, y=deaths, fill=cause_name)) +
+    geom_col() +
+    moz.utils::standard_theme()
+
+compare_dat <- full_dat %>%
+  filter(age_group == "15+",
+         sex == "both") %>%
+  group_by(iso3, period) %>%
+  summarise(deaths = sum(deaths)) %>%
+  mutate(source = "GBD 2019 data") %>%
+  bind_rows(
+    gbd_2020_dat_v1 %>%
+      group_by(iso3, period) %>%
+      summarise(deaths = sum(deaths)) %>%
+      mutate(source = "GBD 2020 data")
+  )
+
+compare_dat %>%
+  filter(period == 2010,
+         deaths < 30000) %>%
+  ggplot(aes(x=iso3, y=deaths, fill=source)) +
+    geom_col(position = position_dodge()) +
+    scale_y_log10() + 
+    moz.utils::standard_theme()
 
 ##########################
 ### TESTING THE SANKEY ###
