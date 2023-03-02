@@ -12,6 +12,6 @@ package_sources:
   github:
     - mrc-ide/naomi
     - mrc-ide/eppasm
-    - mrc-ide/first90
+    - mrc-ide/first90release
     - mrc-ide/naomi.options
     - reside-ic/traduire
